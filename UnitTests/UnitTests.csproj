@@ -48,11 +48,33 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="implementation\Account.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="SmartSchool_Account.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SmartSchool_Course.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Smartschool\Smartschool.csproj">
+      <Project>{dd1025ed-2780-40b0-8a78-0c48b6f6d722}</Project>
+      <Name>Smartschool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YSchoolAPI\YSchoolAPI.csproj">
+      <Project>{76d4c45a-e954-4696-9a0f-c156dd4cf41e}</Project>
+      <Name>YSchoolAPI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

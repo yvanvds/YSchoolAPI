@@ -29,4 +29,12 @@ namespace YSchoolAPI
     CoAccount5 = 5,
     CoAccount6 = 6,
   }
+
+  public enum AccountState
+  {
+    Invalid,
+    Active,
+    Inactive,
+    Administrative,
+  }
 }

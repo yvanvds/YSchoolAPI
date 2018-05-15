@@ -103,10 +103,26 @@ namespace Smartschool
       }
     }
 
-    public static async Task<bool> SetPassword(string UID, string password, AccountType type)
+    public static async Task<bool> SetPassword(IAccount account, string password, AccountType type)
     {
       var result = await Task.Run(
-        () => Server.service.savePassword(Server.password, UID, password, (int)type)
+        () => Server.service.savePassword(Server.password, account.UID, password, (int)type)
+      );
+
+      int iResult = Convert.ToInt32(result);
+      if (iResult != 0)
+      {
+        Error.AddError(iResult);
+        return false;
+      }
+
+      return true;
+    }
+
+    public static async Task<bool> ForcePasswordReset(IAccount account, AccountType type)
+    {
+      var result = await Task.Run(
+        () => Server.service.forcePasswordReset(Server.password, account.UID, (int)type)
       );
 
       int iResult = Convert.ToInt32(result);
@@ -136,6 +152,109 @@ namespace Smartschool
       return true;
     }
 
+    public static async Task<bool> ChangeUID(IAccount account)
+    {
+      var result = await Task.Run(
+        () => Server.service.changeUsername(Server.password, account.AccountID, account.UID)
+      );
+
+      int iResult = Convert.ToInt32(result);
+      if(iResult != 0)
+      {
+        Error.AddError(iResult);
+        return false;
+      }
+
+      return true;
+    }
+
+    public static async Task<bool> ChangeAccountID(IAccount account)
+    {
+      var result = await Task.Run(
+        () => Server.service.changeInternNumber(Server.password, account.UID, account.AccountID)
+      );
+
+      int iResult = Convert.ToInt32(result);
+      if (iResult != 0)
+      {
+        Error.AddError(iResult);
+        return false;
+      }
+
+      return true;
+    }
+
+    public static async Task<bool> SetStatus(IAccount account, AccountState state)
+    {
+      string status;
+      switch(state)
+      {
+        case AccountState.Active:
+          status = "active";
+          break;
+        case AccountState.Inactive:
+          status = "inactive";
+          break;
+        case AccountState.Administrative:
+          status = "administrative";
+          break;
+        default:
+          status = "invalid";
+          break;
+      }
+
+      var result = await Task.Run(
+        () => Server.service.setAccountStatus(Server.password, account.UID, status)
+      );
+
+      int iResult = Convert.ToInt32(result);
+      if (iResult != 0)
+      {
+        Error.AddError(iResult);
+        return false;
+      }
+
+      return true;
+    }
+
+    public static async Task<AccountState> GetStatus(IAccount account)
+    {
+      var result = await Task.Run(
+        () => Server.service.getUserDetails(Server.password, account.UID)
+      );
+
+      try
+      {
+        JSONAccount details = JsonConvert.DeserializeObject<JSONAccount>(result);
+        switch(details.status)
+        {
+          case "actief":
+          case "active":
+          case "enabled":
+            return AccountState.Active;
+          case "uitgeschakeld": // yes, this correct. Even though you use inactief, inactive or disabled to set this status!
+            return AccountState.Inactive;
+          case "administrative":
+          case "administratief":
+            return AccountState.Administrative;
+          default:
+            return AccountState.Invalid;
+        }
+        
+      }
+      catch (Exception e)
+      {
+        Error.AddError(e.Message);
+
+        int iResult = Convert.ToInt32(result);
+        if (iResult != 0)
+        {
+          Error.AddError(iResult);
+          return AccountState.Invalid;
+        }
+        return AccountState.Invalid;
+      }
+    }
 
     public static async Task<bool> Delete(IAccount account)
     {
