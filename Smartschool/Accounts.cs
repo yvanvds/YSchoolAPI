@@ -40,8 +40,8 @@ namespace Smartschool
       if (account.HouseNumberAdd != string.Empty) StreetAddress += "/" + account.HouseNumberAdd;
 
       // add account
-      var result = await Task.Run(() => Server.service.saveUser(
-        Server.password,
+      var result = await Task.Run(() => Connector.service.saveUser(
+        Connector.password,
         account.AccountID,
         account.UID,
         pw1, pw2, pw3,
@@ -80,7 +80,7 @@ namespace Smartschool
     public static async Task<bool> Load(IAccount account)
     {
       var result = await Task.Run(
-        () => Server.service.getUserDetails(Server.password, account.UID)
+        () => Connector.service.getUserDetails(Connector.password, account.UID)
       );
 
       try
@@ -106,7 +106,7 @@ namespace Smartschool
     public static async Task<IList<IAccount>> GetAccounts(IGroup group)
     {
       var result = await Task.Run(
-        () => Server.service.getAllAccountsExtended(Server.password, group.Name, "1")
+        () => Connector.service.getAllAccountsExtended(Connector.password, group.Name, "1")
       );
 
       try
@@ -140,7 +140,7 @@ namespace Smartschool
     public static async Task<bool> SetPassword(IAccount account, string password, AccountType type)
     {
       var result = await Task.Run(
-        () => Server.service.savePassword(Server.password, account.UID, password, (int)type)
+        () => Connector.service.savePassword(Connector.password, account.UID, password, (int)type)
       );
 
       int iResult = Convert.ToInt32(result);
@@ -156,7 +156,7 @@ namespace Smartschool
     public static async Task<bool> ForcePasswordReset(IAccount account, AccountType type)
     {
       var result = await Task.Run(
-        () => Server.service.forcePasswordReset(Server.password, account.UID, (int)type)
+        () => Connector.service.forcePasswordReset(Connector.password, account.UID, (int)type)
       );
 
       int iResult = Convert.ToInt32(result);
@@ -174,7 +174,7 @@ namespace Smartschool
       string changedate = Utils.DateToString(dateOfChange);
 
       var result = await Task.Run(() =>
-        Server.service.unregisterStudent(Server.password, account.UID, changedate)
+        Connector.service.unregisterStudent(Connector.password, account.UID, changedate)
       );
       int iResult = Convert.ToInt32(result);
       if (iResult != 0)
@@ -189,7 +189,7 @@ namespace Smartschool
     public static async Task<bool> ChangeUID(IAccount account)
     {
       var result = await Task.Run(
-        () => Server.service.changeUsername(Server.password, account.AccountID, account.UID)
+        () => Connector.service.changeUsername(Connector.password, account.AccountID, account.UID)
       );
 
       int iResult = Convert.ToInt32(result);
@@ -205,7 +205,7 @@ namespace Smartschool
     public static async Task<bool> ChangeAccountID(IAccount account)
     {
       var result = await Task.Run(
-        () => Server.service.changeInternNumber(Server.password, account.UID, account.AccountID)
+        () => Connector.service.changeInternNumber(Connector.password, account.UID, account.AccountID)
       );
 
       int iResult = Convert.ToInt32(result);
@@ -238,7 +238,7 @@ namespace Smartschool
       }
 
       var result = await Task.Run(
-        () => Server.service.setAccountStatus(Server.password, account.UID, status)
+        () => Connector.service.setAccountStatus(Connector.password, account.UID, status)
       );
 
       int iResult = Convert.ToInt32(result);
@@ -254,7 +254,7 @@ namespace Smartschool
     public static async Task<AccountState> GetStatus(IAccount account)
     {
       var result = await Task.Run(
-        () => Server.service.getUserDetails(Server.password, account.UID)
+        () => Connector.service.getUserDetails(Connector.password, account.UID)
       );
 
       try
@@ -304,7 +304,7 @@ namespace Smartschool
       }
 
       var result = await Task.Run(
-          () => Server.service.delUser(Server.password, account.UID, changeDate)
+          () => Connector.service.delUser(Connector.password, account.UID, changeDate)
       );
 
       int iResult = Convert.ToInt32(result);

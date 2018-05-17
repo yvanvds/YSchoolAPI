@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnitTests.Properties;
 
 namespace UnitTests
 {
@@ -18,7 +19,11 @@ namespace UnitTests
     [TestMethod]
     public void TestConnector()
     {
-      Google.Connector.Init();
+      bool result = Google.Connector.Init(
+          Settings.Default.GoogleAppName,
+          Settings.Default.GoogleAdminUser
+      );
+      Assert.IsTrue(result);
     }
   }
 }

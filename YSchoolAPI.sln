@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YSchoolAPI", "YSchoolAPI\YSchoolAPI.csproj", "{76D4C45A-E954-4696-9A0F-C156DD4CF41E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartschool", "Smartschool\Smartschool.csproj", "{DD1025ED-2780-40B0-8A78-0C48B6F6D722}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{DD58102B-DC3B-4CD2-A9EB-D6402B731065}"
@@ -13,16 +11,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wisa", "Wisa\Wisa.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google", "Google\Google.csproj", "{F1F30BCD-CDC9-452A-BE67-7715AE4DBB46}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YSchoolInterface", "YSchoolInterface\YSchoolInterface.csproj", "{683A1829-66DE-4510-AF2D-EE7E0515B99E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{76D4C45A-E954-4696-9A0F-C156DD4CF41E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{76D4C45A-E954-4696-9A0F-C156DD4CF41E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{76D4C45A-E954-4696-9A0F-C156DD4CF41E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{76D4C45A-E954-4696-9A0F-C156DD4CF41E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DD1025ED-2780-40B0-8A78-0C48B6F6D722}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DD1025ED-2780-40B0-8A78-0C48B6F6D722}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD1025ED-2780-40B0-8A78-0C48B6F6D722}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{F1F30BCD-CDC9-452A-BE67-7715AE4DBB46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1F30BCD-CDC9-452A-BE67-7715AE4DBB46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1F30BCD-CDC9-452A-BE67-7715AE4DBB46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{683A1829-66DE-4510-AF2D-EE7E0515B99E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{683A1829-66DE-4510-AF2D-EE7E0515B99E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{683A1829-66DE-4510-AF2D-EE7E0515B99E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{683A1829-66DE-4510-AF2D-EE7E0515B99E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

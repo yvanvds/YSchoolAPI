@@ -20,7 +20,7 @@ namespace Smartschool
 
       try
       {
-        var result = Server.service.returnJsonErrorCodes();
+        var result = Connector.service.returnJsonErrorCodes();
         errorCodes = JObject.Parse(result);
 
       } catch (Exception e)
@@ -48,9 +48,9 @@ namespace Smartschool
 
     internal static void AddError(string error)
     {
-      if(Server.log != null)
+      if(Connector.log != null)
       {
-        Server.log.Add("Smartschool Error: " + error, true);
+        Connector.log.Add("Smartschool Error: " + error, true);
       } else
       {
         Debug.WriteLine("Smartschool Error: " + error);
@@ -59,9 +59,9 @@ namespace Smartschool
 
     internal static void AddMessage(string message)
     {
-      if (Server.log != null)
+      if (Connector.log != null)
       {
-        Server.log.Add("Smartschool Error: " + message, false);
+        Connector.log.Add("Smartschool Error: " + message, false);
       }
       else
       {

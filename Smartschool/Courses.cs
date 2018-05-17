@@ -49,7 +49,7 @@ namespace Smartschool
     public static async Task<bool> Add(ICourse course)
     {
       var result = await Task.Run(
-        () => Server.service.addCourse(Server.password, course.Name, course.Description)
+        () => Connector.service.addCourse(Connector.password, course.Name, course.Description)
       );
 
       int iResult = Convert.ToInt32(result);
@@ -71,7 +71,7 @@ namespace Smartschool
     public static async Task Reload()
     {
       var result = await Task.Run(
-        () => Server.service.getCourses(Server.password)
+        () => Connector.service.getCourses(Connector.password)
       );
 
       byte[] data = Convert.FromBase64String(result);

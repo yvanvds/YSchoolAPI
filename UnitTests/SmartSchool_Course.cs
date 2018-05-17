@@ -35,12 +35,12 @@ namespace UnitTests
   {
     public SmartSchool_Course()
     {
-      Smartschool.Server.Connect(Settings.Default.school, Settings.Default.passphrase);
+      Smartschool.Connector.Init(Settings.Default.school, Settings.Default.passphrase);
     }
 
     ~SmartSchool_Course()
     {
-      Smartschool.Server.Disconnect();
+      Smartschool.Connector.Disconnect();
     }
 
     [TestMethod]

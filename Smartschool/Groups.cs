@@ -28,7 +28,7 @@ namespace Smartschool
     public static async Task Reload()
     {
       var result = await Task.Run(
-        () => Server.service.getAllGroupsAndClasses(Server.password)
+        () => Connector.service.getAllGroupsAndClasses(Connector.password)
       );
 
       byte[] data = Convert.FromBase64String(result as string);
@@ -134,8 +134,8 @@ namespace Smartschool
 
       if (group.Type == GroupType.Class)
       {
-        var r = await Task.Run(() => Server.service.saveClass(
-          Server.password,
+        var r = await Task.Run(() => Connector.service.saveClass(
+          Connector.password,
           group.Name,
           group.Description,
           group.Code,
@@ -148,8 +148,8 @@ namespace Smartschool
         result = Convert.ToInt32(r);
       } else if (group.Type == GroupType.Group)
       {
-        var r = await Task.Run(() => Server.service.saveGroup(
-          Server.password,
+        var r = await Task.Run(() => Connector.service.saveGroup(
+          Connector.password,
           group.Name,
           group.Description,
           group.Code,
@@ -169,8 +169,8 @@ namespace Smartschool
 
     public static async Task<bool> Delete(IGroup group)
     {
-      var result = await Task.Run(() => Server.service.delClass(
-        Server.password,
+      var result = await Task.Run(() => Connector.service.delClass(
+        Connector.password,
         group.Code
       ));
 
@@ -187,11 +187,11 @@ namespace Smartschool
     {
       if (group.Type != GroupType.Class || !group.Official)
       {
-        Server.log.Add("You can only move users to official classes", true);
+        Connector.log.Add("You can only move users to official classes", true);
         return false;
       }
-      var result = await Task.Run(() => Server.service.saveUserToClass(
-        Server.password,
+      var result = await Task.Run(() => Connector.service.saveUserToClass(
+        Connector.password,
         account.UID,
         group.Name,
         Utils.DateToString(date)
@@ -210,11 +210,11 @@ namespace Smartschool
     {
       if(group.Official)
       {
-        Server.log.Add("Users cannot be added to official classes. Use the MoveUserToClass method instead.", true);
+        Connector.log.Add("Users cannot be added to official classes. Use the MoveUserToClass method instead.", true);
         return false;
       }
-      var result = await Task.Run(() => Server.service.saveUserToClassesAndGroups(
-        Server.password, 
+      var result = await Task.Run(() => Connector.service.saveUserToClassesAndGroups(
+        Connector.password, 
         account.UID,
         group.Name,
         1
@@ -233,12 +233,12 @@ namespace Smartschool
     {
       if (group.Official)
       {
-        Server.log.Add("Users cannot be removed from official classes.", true);
+        Connector.log.Add("Users cannot be removed from official classes.", true);
         return false;
       }
 
-      var result = await Task.Run(() => Server.service.removeUserFromGroup(
-        Server.password,
+      var result = await Task.Run(() => Connector.service.removeUserFromGroup(
+        Connector.password,
         account.UID,
         group.Name,
         Utils.DateToString(DateTime.Now)

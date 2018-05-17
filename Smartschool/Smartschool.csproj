@@ -11,6 +11,7 @@
     <AssemblyName>Smartschool</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,7 +54,7 @@
     <Compile Include="Error.cs" />
     <Compile Include="JSONAccount.cs" />
     <Compile Include="JSONGroup.cs" />
-    <Compile Include="Server.cs" />
+    <Compile Include="Connector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -100,9 +101,9 @@
     <None Include="Web References\SS\V3.wsdl" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\YSchoolAPI\YSchoolAPI.csproj">
-      <Project>{76d4c45a-e954-4696-9a0f-c156dd4cf41e}</Project>
-      <Name>YSchoolAPI</Name>
+    <ProjectReference Include="..\YSchoolInterface\YSchoolInterface.csproj">
+      <Project>{683a1829-66de-4510-af2d-ee7e0515b99e}</Project>
+      <Name>YSchoolInterface</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

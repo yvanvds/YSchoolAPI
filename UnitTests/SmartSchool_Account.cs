@@ -13,12 +13,12 @@ namespace UnitTests
   {
     public SmartSchool_Account()
     {
-      Smartschool.Server.Connect(Settings.Default.school, Settings.Default.passphrase);
+      Smartschool.Connector.Init(Settings.Default.school, Settings.Default.passphrase);
     }
 
     ~SmartSchool_Account()
     {
-      Smartschool.Server.Disconnect();
+      Smartschool.Connector.Disconnect();
     }
 
     bool SameDay(DateTime a, DateTime b)
