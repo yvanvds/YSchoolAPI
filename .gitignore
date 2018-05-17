@@ -217,3 +217,6 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 UnitTests/app.config
+UnitTests/client_secret.json
+UnitTests/Properties/Settings.Designer.cs
+UnitTests/Properties/Settings.settings

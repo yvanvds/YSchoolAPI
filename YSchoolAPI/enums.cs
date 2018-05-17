@@ -37,4 +37,11 @@ namespace YSchoolAPI
     Inactive,
     Administrative,
   }
+
+  public enum GroupType
+  {
+    Invalid,
+    Group,
+    Class,
+  }
 }

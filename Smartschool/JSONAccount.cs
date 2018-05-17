@@ -75,37 +75,37 @@ namespace Smartschool
     public string email_coaccount1 { get; set; }
     public string telefoonnummer_coaccount1 { get; set; }
     public string mobielnummer_coaccount1 { get; set; }
-    public int type_coaccount1 { get; set; }
+    public string type_coaccount1 { get; set; }
     public string voornaam_coaccount2 { get; set; }
     public string naam_coaccount2 { get; set; }
     public string email_coaccount2 { get; set; }
     public string telefoonnummer_coaccount2 { get; set; }
     public string mobielnummer_coaccount2 { get; set; }
-    public int type_coaccount2 { get; set; }
+    public string type_coaccount2 { get; set; }
     public string voornaam_coaccount3 { get; set; }
     public string naam_coaccount3 { get; set; }
     public string email_coaccount3 { get; set; }
     public string telefoonnummer_coaccount3 { get; set; }
     public string mobielnummer_coaccount3 { get; set; }
-    public int type_coaccount3 { get; set; }
+    public string type_coaccount3 { get; set; }
     public string voornaam_coaccount4 { get; set; }
     public string naam_coaccount4 { get; set; }
     public string email_coaccount4 { get; set; }
     public string telefoonnummer_coaccount4 { get; set; }
     public string mobielnummer_coaccount4 { get; set; }
-    public int type_coaccount4 { get; set; }
+    public string type_coaccount4 { get; set; }
     public string voornaam_coaccount5 { get; set; }
     public string naam_coaccount5 { get; set; }
     public string email_coaccount5 { get; set; }
     public string telefoonnummer_coaccount5 { get; set; }
     public string mobielnummer_coaccount5 { get; set; }
-    public int type_coaccount5 { get; set; }
+    public string type_coaccount5 { get; set; }
     public string voornaam_coaccount6 { get; set; }
     public string naam_coaccount6 { get; set; }
     public string email_coaccount6 { get; set; }
     public string telefoonnummer_coaccount6 { get; set; }
     public string mobielnummer_coaccount6 { get; set; }
-    public int type_coaccount6 { get; set; }
+    public string type_coaccount6 { get; set; }
     public string last_successful_login { get; set; }
     public string last_successful_login_coaccount1 { get; set; }
     public string last_successful_login_coaccount2 { get; set; }

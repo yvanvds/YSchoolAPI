@@ -46,8 +46,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.cs" />
-    <Compile Include="Class.cs" />
-    <Compile Include="Course.cs" />
+    <Compile Include="Accounts.cs" />
+    <Compile Include="Group.cs" />
+    <Compile Include="Groups.cs" />
+    <Compile Include="Courses.cs" />
     <Compile Include="Error.cs" />
     <Compile Include="JSONAccount.cs" />
     <Compile Include="JSONGroup.cs" />

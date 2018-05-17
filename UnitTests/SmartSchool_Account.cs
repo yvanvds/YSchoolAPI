@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Smartschool;
 using UnitTests.Properties;
 using YSchoolAPI;
 
@@ -32,31 +34,31 @@ namespace UnitTests
     {
       // saving an empty account to smartschool should fail
       Account empty = new Account();
-      bool result = await Smartschool.Account.Save(empty, "");
+      bool result = await Smartschool.Accounts.Save(empty, "");
       Assert.IsFalse(result);
     }
 
     [TestMethod]
     public async Task CreateAndDeleteUser()
     {
-      Account test = Account.CreateTestAccount();
-      bool result = await Smartschool.Account.Save(test, "Abc123D!");
+      Account test = Accounts.Student();
+      bool result = await Smartschool.Accounts.Save(test, "Abc123D!");
       Assert.IsTrue(result);
 
-      result = await Smartschool.Account.Delete(test);
+      result = await Smartschool.Accounts.Delete(test);
       Assert.IsTrue(result);
     }
 
     [TestMethod]
     public async Task CreateLoadAndDeleteUser()
     {
-      Account local = Account.CreateTestAccount();
+      Account local = Accounts.Student();
       Account remote = new Account();
-      bool result = await Smartschool.Account.Save(local, "Abc123D!");
+      bool result = await Smartschool.Accounts.Save(local, "Abc123D!");
       Assert.IsTrue(result);
 
       remote.UID = local.UID;
-      result = await Smartschool.Account.Load(remote);
+      result = await Smartschool.Accounts.Load(remote);
       Assert.IsTrue(result);
 
       Assert.IsTrue(local.UID == remote.UID, "UID is incorrect");
@@ -81,82 +83,92 @@ namespace UnitTests
       Assert.IsTrue(local.Fax.Equals(remote.Fax), "Fax is incorrect");
       Assert.IsTrue(local.Mail.Equals(remote.Mail), "Mail is incorrect");
 
-      result = await Smartschool.Account.Delete(local);
+      result = await Smartschool.Accounts.Delete(local);
       Assert.IsTrue(result);
     }
 
     [TestMethod]
     public async Task ChangeUID()
     {
-      Account test = Account.CreateTestAccount();
-      bool result = await Smartschool.Account.Save(test, "Abc123D!");
+      Account test = Accounts.Student();
+      bool result = await Smartschool.Accounts.Save(test, "Abc123D!");
       Assert.IsTrue(result);
 
       test.UID = "changedUID";
-      result = await Smartschool.Account.ChangeUID(test);
+      result = await Smartschool.Accounts.ChangeUID(test);
       Assert.IsTrue(result);
 
       // loading is done on UID, so the account should be the same
       // and we can compare any field except UID
       Account remote = new Account();
       remote.UID = "changedUID";
-      result = await Smartschool.Account.Load(remote);
+      result = await Smartschool.Accounts.Load(remote);
       Assert.IsTrue(remote.RegisterID.Equals(test.RegisterID));
 
-      result = await Smartschool.Account.Delete(test);
+      result = await Smartschool.Accounts.Delete(test);
       Assert.IsTrue(result);
     }
 
     [TestMethod]
     public async Task ChangeAccountID()
     {
-      Account test = Account.CreateTestAccount();
-      bool result = await Smartschool.Account.Save(test, "Abc123D!");
+      Account test = Accounts.Student();
+      bool result = await Smartschool.Accounts.Save(test, "Abc123D!");
       Assert.IsTrue(result);
 
       test.AccountID = "ACCOUNTID";
-      result = await Smartschool.Account.ChangeAccountID(test);
+      result = await Smartschool.Accounts.ChangeAccountID(test);
       Assert.IsTrue(result);
 
       Account remote = new Account();
       remote.UID = test.UID;
-      result = await Smartschool.Account.Load(remote);
+      result = await Smartschool.Accounts.Load(remote);
       Assert.IsTrue(remote.AccountID.Equals(test.AccountID));
 
-      result = await Smartschool.Account.Delete(test);
+      result = await Smartschool.Accounts.Delete(test);
       Assert.IsTrue(result);
     }
 
     [TestMethod]
     public async Task AccountStatus()
     {
-      Account test = Account.CreateTestAccount();
-      bool result = await Smartschool.Account.Save(test, "Abc123D!");
+      Account test = Accounts.Student();
+      bool result = await Smartschool.Accounts.Save(test, "Abc123D!");
       Assert.IsTrue(result);
 
-      AccountState state = await Smartschool.Account.GetStatus(test);
+      AccountState state = await Smartschool.Accounts.GetStatus(test);
       Assert.IsTrue(state != AccountState.Invalid);
 
-      result = await Smartschool.Account.SetStatus(test, AccountState.Active);
+      result = await Smartschool.Accounts.SetStatus(test, AccountState.Active);
       Assert.IsTrue(result);
 
-      state = await Smartschool.Account.GetStatus(test);
+      state = await Smartschool.Accounts.GetStatus(test);
       Assert.IsTrue(state == AccountState.Active);
 
-      result = await Smartschool.Account.SetStatus(test, AccountState.Inactive);
+      result = await Smartschool.Accounts.SetStatus(test, AccountState.Inactive);
       Assert.IsTrue(result);
 
-      state = await Smartschool.Account.GetStatus(test);
+      state = await Smartschool.Accounts.GetStatus(test);
       Assert.IsTrue(state == AccountState.Inactive);
 
-      result = await Smartschool.Account.SetStatus(test, AccountState.Administrative);
+      result = await Smartschool.Accounts.SetStatus(test, AccountState.Administrative);
       Assert.IsTrue(result);
 
-      state = await Smartschool.Account.GetStatus(test);
+      state = await Smartschool.Accounts.GetStatus(test);
       Assert.IsTrue(state == AccountState.Administrative);
 
-      result = await Smartschool.Account.Delete(test);
+      result = await Smartschool.Accounts.Delete(test);
       Assert.IsTrue(result);
+    }
+
+    [TestMethod]
+    public async Task GetListOfAccounts()
+    {
+      Group group = new Group(null);
+      group.Name = Settings.Default.teachergroup;
+
+      IList<IAccount> accounts = await Smartschool.Accounts.GetAccounts(group);
+      Assert.IsNotNull(accounts);
     }
   }
 }

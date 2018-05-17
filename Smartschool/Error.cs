@@ -20,23 +20,12 @@ namespace Smartschool
 
       try
       {
-        Server.service.returnJsonErrorCodesAsync();
-        Server.service.returnJsonErrorCodesCompleted += Service_returnJsonErrorCodesCompleted;
+        var result = Server.service.returnJsonErrorCodes();
+        errorCodes = JObject.Parse(result);
+
       } catch (Exception e)
       {
         AddError(e.Message);
-      }
-    }
-
-    private static void Service_returnJsonErrorCodesCompleted(object sender, returnJsonErrorCodesCompletedEventArgs e)
-    {
-      try
-      {
-        errorCodes = JObject.Parse(e.Result);
-      }
-      catch (Exception ex)
-      {
-        Error.AddError(ex.Message);
       }
     }
 

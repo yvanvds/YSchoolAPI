@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Smartschool
+namespace Wisa
 {
-  public static class Class
-  {
-    // Titular
-    
-    // Adjunct
-
-  }
+    public class Class1
+    {
+    }
 }

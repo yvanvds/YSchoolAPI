@@ -42,8 +42,10 @@ namespace Smartschool
     StudentGroup,
   }
 
-  public static class Course
+  public static class Courses
   {
+    public static List<ICourse> List;
+
     public static async Task<bool> Add(ICourse course)
     {
       var result = await Task.Run(
@@ -60,7 +62,13 @@ namespace Smartschool
       return true;
     }
 
-    public static async Task<IList<ICourse>> List()
+    public static async Task Load()
+    {
+      if (List != null) return;
+      await Reload();
+    }
+
+    public static async Task Reload()
     {
       var result = await Task.Run(
         () => Server.service.getCourses(Server.password)
@@ -69,7 +77,7 @@ namespace Smartschool
       byte[] data = Convert.FromBase64String(result);
       string decoded = Encoding.UTF8.GetString(data);
 
-      List<CourseObj> list = new List<CourseObj>();
+      List = new List<ICourse>();
 
       // most results are JSON, but this one is XML...
       // Make up your mind, Smartschool!
@@ -83,7 +91,7 @@ namespace Smartschool
             switch (reader.Name)
             {
               case "course":
-                list.Add(new CourseObj());
+                List.Add(new CourseObj());
                 state = XMLReaderState.Course;
                 break;
               case "mainTeacher":
@@ -105,33 +113,33 @@ namespace Smartschool
                 switch (state)
                 {
                   case XMLReaderState.Course:
-                    if(reader.Read()) list.Last().Name = reader.Value;
+                    if(reader.Read()) List.Last().Name = reader.Value;
                     break;
                   case XMLReaderState.StudentGroup:
-                    if (reader.Read()) list.Last().StudentGroups.Add(reader.Value);
+                    if (reader.Read()) List.Last().StudentGroups.Add(reader.Value);
                     break;
                 }
                 break;
               case "description":
                 if (state == XMLReaderState.Course)
                 {
-                  if (reader.Read()) list.Last().Description = reader.Value;
+                  if (reader.Read()) List.Last().Description = reader.Value;
                 }
                 break;
               case "active":
                 if (state == XMLReaderState.Course)
                 {
-                  if (reader.Read()) list.Last().Active = reader.Value == "1" ? true : false;
+                  if (reader.Read()) List.Last().Active = reader.Value == "1" ? true : false;
                 }
                 break;
               case "username":
                 switch (state)
                 {
                   case XMLReaderState.MainTeacher:
-                    if (reader.Read()) list.Last().TeacherUID = reader.Value;
+                    if (reader.Read()) List.Last().TeacherUID = reader.Value;
                     break;
                   case XMLReaderState.CoTeacher:
-                    if (reader.Read()) list.Last().CoTeacherUIDs.Add(reader.Value);
+                    if (reader.Read()) List.Last().CoTeacherUIDs.Add(reader.Value);
                     break;
                 }
                 break;
@@ -139,8 +147,6 @@ namespace Smartschool
           }
         }
       }
-
-      return list.ToList<ICourse>();
     }
 
     // AddStudents

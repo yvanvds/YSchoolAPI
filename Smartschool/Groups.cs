@@ -1,0 +1,256 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Serialization;
+using YSchoolAPI;
+
+namespace Smartschool
+{
+
+
+  public static class Groups
+  {
+    private static IGroup root;
+    // the root itself is just an empty hook
+    public static IGroup Root { get => root.Children != null ? root.Children[0] : null; }
+
+    public static async Task Load()
+    {
+      if (root != null) return;
+      await Reload();
+    }
+
+    public static async Task Reload()
+    {
+      var result = await Task.Run(
+        () => Server.service.getAllGroupsAndClasses(Server.password)
+      );
+
+      byte[] data = Convert.FromBase64String(result as string);
+      string decoded = Encoding.UTF8.GetString(data);
+
+      root = new Group(null);
+      Group current = root as Group;
+      using (XmlReader reader = XmlReader.Create(new StringReader(decoded)))
+      {
+        while (reader.Read())
+        {
+          if (reader.IsStartElement())
+          {
+            switch (reader.Name)
+            {
+              case "group":
+                if (current.Children == null) current.Children = new List<IGroup>();
+                current.Children.Add(new Group(current));
+                current = current.Children.Last() as Group;
+                //Debug.WriteLine("new group");
+                break;
+              case "name":
+                if (reader.Read()) current.Name = reader.Value;
+                //Debug.WriteLine(current.Name);
+                break;
+              case "desc":
+                if (reader.Read()) current.Description = reader.Value;
+                //Debug.WriteLine(current.Description);
+                break;
+              case "type":
+                if (reader.Read()) switch (reader.Value)
+                  {
+                    case "G": current.Type = GroupType.Group; break;
+                    case "K": current.Type = GroupType.Class; break;
+                    default: current.Type = GroupType.Invalid; break;
+                  }
+                //Debug.WriteLine(current.Type);
+                break;
+              case "code":
+                if (reader.Read()) current.Code = reader.Value;
+                //Debug.WriteLine(current.Code);
+                break;
+              case "untis":
+                if (reader.Read()) current.Untis = reader.Value;
+                //Debug.WriteLine(current.Untis);
+                break;
+              case "visible":
+                if (reader.Read()) current.Visible = reader.Value == "1" ? true : false;
+                //Debug.WriteLine(current.Visible);
+                break;
+              case "isOfficial":
+                if (reader.Read()) current.Official = reader.Value == "1" ? true : false;
+                //Debug.WriteLine(current.Official);
+                break;
+              case "coAccountLabel":
+                if (reader.Read()) current.CoAccountLabel = reader.Value;
+                //Debug.WriteLine(current.CoAccountLabel);
+                break;
+              case "adminNumber":
+                if (reader.Read())
+                {
+                  int var = 0;
+                  int.TryParse(reader.Value, out var);
+                  current.AdminNumber = var;
+                  //Debug.WriteLine(current.AdminNumber);
+                }
+                break;
+              case "instituteNumber":
+                if (reader.Read())
+                {
+                  int var = 0;
+                  int.TryParse(reader.Value, out var);
+                  current.InstituteNumber = var;
+                  //Debug.WriteLine(current.InstituteNumber);
+                }
+                break;
+              case "username":
+                if (reader.Read())
+                {
+                  if (current.Titulars == null) current.Titulars = new List<string>();
+                  current.Titulars.Add(reader.Value);
+                }
+                //Debug.WriteLine(current.Titulars.Last());
+                break;
+            }
+
+          }
+          else if (reader.NodeType == XmlNodeType.EndElement)
+          {
+            if (reader.Name == "group") // end of group
+            {
+              current = current.Parent as Group;
+              //Debug.WriteLine("switched to parent");
+            }
+          }
+        }
+      }
+    }
+
+    public static async Task<bool> Save(IGroup group)
+    {
+      int result = 0;
+
+      if (group.Type == GroupType.Class)
+      {
+        var r = await Task.Run(() => Server.service.saveClass(
+          Server.password,
+          group.Name,
+          group.Description,
+          group.Code,
+          group.Parent.Code,
+          group.Untis,
+          group.InstituteNumber.ToString(),
+          group.AdminNumber.ToString(),
+          ""
+        ));
+        result = Convert.ToInt32(r);
+      } else if (group.Type == GroupType.Group)
+      {
+        var r = await Task.Run(() => Server.service.saveGroup(
+          Server.password,
+          group.Name,
+          group.Description,
+          group.Code,
+          group.Parent.Code,
+          group.Untis
+        ));
+        result = Convert.ToInt32(r);
+      }
+
+      if (result != 0)
+      {
+        Error.AddError(result);
+        return false;
+      }
+      return true;
+    }
+
+    public static async Task<bool> Delete(IGroup group)
+    {
+      var result = await Task.Run(() => Server.service.delClass(
+        Server.password,
+        group.Code
+      ));
+
+      int iResult = Convert.ToInt32(result);
+      if (iResult != 0)
+      {
+        Error.AddError(iResult);
+        return false;
+      }
+      return true;
+    }
+
+    public static async Task<bool> MoveUserToClass(IAccount account, IGroup group, DateTime date)
+    {
+      if (group.Type != GroupType.Class || !group.Official)
+      {
+        Server.log.Add("You can only move users to official classes", true);
+        return false;
+      }
+      var result = await Task.Run(() => Server.service.saveUserToClass(
+        Server.password,
+        account.UID,
+        group.Name,
+        Utils.DateToString(date)
+      ));
+
+      int iResult = Convert.ToInt32(result);
+      if (iResult != 0)
+      {
+        Error.AddError(iResult);
+        return false;
+      }
+      return true;
+    }
+
+    public static async Task<bool> AddUserToGroup(IAccount account, IGroup group)
+    {
+      if(group.Official)
+      {
+        Server.log.Add("Users cannot be added to official classes. Use the MoveUserToClass method instead.", true);
+        return false;
+      }
+      var result = await Task.Run(() => Server.service.saveUserToClassesAndGroups(
+        Server.password, 
+        account.UID,
+        group.Name,
+        1
+      ));
+
+      int iResult = Convert.ToInt32(result);
+      if (iResult != 0)
+      {
+        Error.AddError(iResult);
+        return false;
+      }
+      return true;
+    }
+
+    public static async Task<bool> RemoveUserFromGroup(IAccount account, IGroup group)
+    {
+      if (group.Official)
+      {
+        Server.log.Add("Users cannot be removed from official classes.", true);
+        return false;
+      }
+
+      var result = await Task.Run(() => Server.service.removeUserFromGroup(
+        Server.password,
+        account.UID,
+        group.Name,
+        Utils.DateToString(DateTime.Now)
+      ));
+
+      int iResult = Convert.ToInt32(result);
+      if (iResult != 0)
+      {
+        Error.AddError(iResult);
+        return false;
+      }
+      return true;
+    }
+  }
+}

@@ -8,5 +8,14 @@
     <Setting Name="passphrase" Type="System.String" Scope="Application">
       <Value Profile="(Default)">yAToolsWebInterfaceToSmartschool</Value>
     </Setting>
+    <Setting Name="testgroup" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Testgroep</Value>
+    </Setting>
+    <Setting Name="employeegroup" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Personeel</Value>
+    </Setting>
+    <Setting Name="teachergroup" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Leerkrachten</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

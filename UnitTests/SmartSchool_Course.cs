@@ -46,8 +46,8 @@ namespace UnitTests
     [TestMethod]
     public async Task GetCourses()
     {
-      IList<ICourse> result = await Smartschool.Course.List();
-      Assert.IsTrue(result.Count > 0); // unless there are no courses in smartschool, this should be ok
+      await Smartschool.Courses.Load();
+      Assert.IsTrue(Smartschool.Courses.List.Count > 0); // unless there are no courses in smartschool, this should be ok
     }
 
     /*

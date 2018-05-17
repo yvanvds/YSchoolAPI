@@ -40,5 +40,32 @@ namespace UnitTests.Properties {
                 return ((string)(this["passphrase"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Testgroep")]
+        public string testgroup {
+            get {
+                return ((string)(this["testgroup"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Personeel")]
+        public string employeegroup {
+            get {
+                return ((string)(this["employeegroup"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Leerkrachten")]
+        public string teachergroup {
+            get {
+                return ((string)(this["teachergroup"]));
+            }
+        }
     }
 }
