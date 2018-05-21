@@ -33,5 +33,6 @@ namespace YSchoolAPI
     string HomePhone { set; get; }
     string Fax { set; get; }
     string Mail { set; get; }
+    string MailAlias { set; get; }
   }
 }

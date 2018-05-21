@@ -21,7 +21,8 @@ namespace UnitTests
     {
       bool result = Google.Connector.Init(
           Settings.Default.GoogleAppName,
-          Settings.Default.GoogleAdminUser
+          Settings.Default.GoogleAdminUser,
+          Settings.Default.GoogleDomain
       );
       Assert.IsTrue(result);
     }
