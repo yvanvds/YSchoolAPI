@@ -89,6 +89,7 @@
     <Compile Include="SmartSchool_Course.cs" />
     <Compile Include="SmartSchool_Groups.cs" />
     <Compile Include="Google_Accounts.cs" />
+    <Compile Include="Wisa_Connector.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Wisa
+namespace SchoolAdmin
 {
-    public class Class1
-    {
-    }
+  public static class Global
+  {
+    public static Logic.Log Log;
+  }
 }

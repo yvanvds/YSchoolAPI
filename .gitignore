@@ -220,3 +220,7 @@ UnitTests/app.config
 UnitTests/client_secret.json
 UnitTests/Properties/Settings.settings
 UnitTests/Properties/Settings.Designer.cs
+SchoolAdmin/Properties/Settings.settings
+SchoolAdmin/Properties/Settings.Designer.cs
+Wisa/Properties/Settings.settings
+Wisa/Properties/Settings.Designer.cs

@@ -1,0 +1,18 @@
+﻿<Window x:Class="SchoolAdmin.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SchoolAdmin"
+        xmlns:ui="clr-namespace:SchoolAdmin.UI"
+        mc:Ignorable="d"
+        Background="Gray"
+        Title="School Admin" Height="450" Width="800" WindowState="Maximized">
+  <DockPanel>
+    <ui:MainMenu DockPanel.Dock="Top"></ui:MainMenu>
+    <ui:Toolbar DockPanel.Dock="Bottom"></ui:Toolbar>
+    <ui:TreeView DockPanel.Dock="Left" Width="200"></ui:TreeView>
+    <ui:LogView x:Name="LogView" DockPanel.Dock="Right" Width="400"></ui:LogView>
+    <ui:MainView></ui:MainView>
+  </DockPanel>
+</Window>

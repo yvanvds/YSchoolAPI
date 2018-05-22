@@ -1,0 +1,29 @@
+﻿<Window x:Class="SchoolAdmin.UI.Config.ConfigWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SchoolAdmin.UI.Config"
+        Background="Gray"
+        mc:Ignorable="d"
+        Title="Configuratie" Height="450" Width="800">
+    <Grid>
+    <TabControl TabStripPlacement="Left">
+      <TabItem Header="Algemeen">
+        
+      </TabItem>
+      <TabItem Header="Wisa">
+        <local:WisaConfig x:Name="Wisa"></local:WisaConfig>
+      </TabItem>
+      <TabItem Header="AD">
+        
+      </TabItem>
+      <TabItem Header="Google">
+        
+      </TabItem>
+      <TabItem Header="Smartschool">
+        <local:SmartschoolConfig x:Name="Smartschool"></local:SmartschoolConfig>
+      </TabItem>
+    </TabControl>
+    </Grid>
+</Window>
