@@ -49,6 +49,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="School.cs" />
+    <Compile Include="Schools.cs" />
+    <Compile Include="Student.cs" />
+    <Compile Include="Students.cs" />
     <Compile Include="Web References\WISA\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -85,6 +89,12 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\WISA\WisaAPIService.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\YSchoolInterface\YSchoolInterface.csproj">
+      <Project>{683a1829-66de-4510-af2d-ee7e0515b99e}</Project>
+      <Name>YSchoolInterface</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

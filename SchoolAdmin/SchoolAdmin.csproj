@@ -54,6 +54,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Dialogs\ShowWisaStudents.xaml.cs">
+      <DependentUpon>ShowWisaStudents.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Global.cs" />
     <Compile Include="Logic\Log.cs" />
     <Compile Include="Models\LogEntry.cs" />
@@ -75,12 +78,22 @@
     <Compile Include="UI\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Parts\SchoolDetails.xaml.cs">
+      <DependentUpon>SchoolDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Tabs\WisaInfo.xaml.cs">
+      <DependentUpon>WisaInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Toolbar.xaml.cs">
       <DependentUpon>Toolbar.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\TreeView.xaml.cs">
       <DependentUpon>TreeView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Dialogs\ShowWisaStudents.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -114,6 +127,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Parts\SchoolDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Tabs\WisaInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

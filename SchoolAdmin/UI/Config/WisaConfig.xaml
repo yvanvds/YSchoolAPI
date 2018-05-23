@@ -55,10 +55,22 @@
 
           <StackPanel Orientation="Horizontal" Margin="10">
             <Button x:Name="ButtonConnectionTest" Content="Test Verbinding" Click="ButtonConnectionTest_Click"></Button>
-            <TextBlock x:Name="ConnectionTestResult" Text="hidden" Foreground="Green" Visibility="Hidden" Margin="10,0,0,0"></TextBlock>
+            <TextBlock x:Name="ConnectionTestResult" Text="hidden" Foreground="Green" Margin="10,0,0,0"></TextBlock>
           </StackPanel>
 
         </StackPanel>
+      </GroupBox>
+    </StackPanel>
+
+    <StackPanel x:Name="SchoolsListContainer" Visibility="Collapsed" Grid.Column="1" Grid.Row="0" Orientation="Vertical">
+      <GroupBox Header="Instellingen" Margin="10">
+        
+        <ScrollViewer Height="200">
+          <StackPanel x:Name="SchoolsList" Orientation="Vertical">
+            <TextBlock Text="Selecteer de instellingen die je wil syncen." Margin="10" TextWrapping="Wrap"></TextBlock>
+          </StackPanel>
+        </ScrollViewer>
+        
       </GroupBox>
     </StackPanel>
   </Grid>

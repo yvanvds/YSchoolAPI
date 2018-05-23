@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,10 +26,14 @@ namespace SchoolAdmin
     {
       InitializeComponent();
 
+      var culture = new CultureInfo("nl-BE");
+      Thread.CurrentThread.CurrentCulture = culture;
+      Thread.CurrentThread.CurrentUICulture = culture;
+
       Global.Log = new Logic.Log(LogView);
 
-      Window window = new UI.Config.ConfigWindow();
-      window.ShowDialog();
+      //Window window = new UI.Config.ConfigWindow();
+      //window.ShowDialog();
     }
   }
 }

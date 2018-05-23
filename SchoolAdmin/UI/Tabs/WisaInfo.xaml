@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="SchoolAdmin.UI.Tabs.WisaInfo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SchoolAdmin.UI.Tabs"
+             mc:Ignorable="d" 
+             Background="LightGray"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="1*"/>
+      <ColumnDefinition Width="1*"/>
+    </Grid.ColumnDefinitions>
+
+    
+      <Grid Grid.Column="0" Margin="10">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+      <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" x:Name="Status" Text="Niet verbonden met Wisa."/>
+      <Button Grid.Column="1" Grid.Row="0" x:Name="Connect" Content="Maak Verbinding" Padding="5" Margin="0,5" Click="Connect_Click"/>
+
+      <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" x:Name="StudentsTotal" Text="Aantal leerlingen in Wisa: 0"/>
+        <Button Grid.Column="1" Grid.Row="1" x:Name="LoadStudents" Padding="5" Margin="0,5" Content="Laad Leerlingen" Click="LoadStudents_Click"/>
+
+      
+
+      <ScrollViewer Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,10,0,10">
+        <StackPanel x:Name="Schools" Orientation="Vertical">
+          
+        </StackPanel>
+      </ScrollViewer>
+      
+      </Grid>
+
+    </Grid>
+</UserControl>

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YSchoolAPI;
 
 namespace Wisa
 {
@@ -11,18 +12,35 @@ namespace Wisa
   {
     private static WISA.TWISAAPICredentials credentials;
     private static WISA.WisaAPIServiceService service;
+    internal static ILog Log;
 
-    static public void Init()
+    static public void Init(string url, int port, string accountname, string password, string database, ILog log = null)
     {
+      Log = log;
+
       credentials = new WISA.TWISAAPICredentials();
-      credentials.Username = "";
-      credentials.Password = "";
-      credentials.Database = "";
+      credentials.Username = accountname;
+      credentials.Password = password;
+      credentials.Database = database;
 
       service = new WISA.WisaAPIServiceService();
-      service.Url = "http://wenen.wisa-asp.net:8081/SOAP/";
+      service.Url = "http://" + url + ":" + port.ToString() + "/SOAP/";
+    }
 
-      
+    static public async Task<string> PerformQuery(string name, WISA.TWISAAPIParamValue[] values)
+    {
+      return await Task.Run(() =>
+      {
+        try
+        {
+          var data = service.GetCSVData(credentials, name, values, true, ",", "");
+          return Encoding.Default.GetString(data);
+        } catch (Exception e)
+        {
+          Log?.Add("Wisa Query: " + e.Message, true);
+          return String.Empty;
+        }
+      });
     }
 
     static public void GetClassList(string IDListCSV)

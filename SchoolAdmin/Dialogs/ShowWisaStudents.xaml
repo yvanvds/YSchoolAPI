@@ -1,0 +1,38 @@
+﻿<Window x:Class="SchoolAdmin.Dialogs.ShowWisaStudents"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SchoolAdmin.Dialogs"
+        mc:Ignorable="d"
+        Title="ShowWisaStudents" Height="450" Width="800">
+    <Grid>
+    <ListView x:Name="lvStudents" Margin="10">
+      <ListView.Resources>
+        <Style TargetType="{x:Type GridViewColumnHeader}">
+          <Setter Property="HorizontalContentAlignment" Value="Left" />
+        </Style>
+      </ListView.Resources>
+      <ListView.View>
+        <GridView>
+          <GridViewColumn Header="Naam" Width="150" DisplayMemberBinding="{Binding Name}"/>
+          <GridViewColumn Header="Voornaam" Width="100" DisplayMemberBinding="{Binding FirstName}"/>
+          <GridViewColumn Header="Wisa ID" Width="80" DisplayMemberBinding="{Binding WisaID}"/>
+          <GridViewColumn Header="StamboekNr" Width="80" DisplayMemberBinding="{Binding StemID}"/>
+          <GridViewColumn Header="Woonplaats" Width="100" DisplayMemberBinding="{Binding City}"/>
+          <GridViewColumn Header="Klaswijziging" Width="80" DisplayMemberBinding="{Binding ClassChange}"/>
+        </GridView>
+      </ListView.View>
+
+      <ListView.GroupStyle>
+        <GroupStyle>
+          <GroupStyle.HeaderTemplate>
+            <DataTemplate>
+              <TextBlock FontWeight="Bold" FontSize="14" Text="{Binding Name}"/>
+            </DataTemplate>
+          </GroupStyle.HeaderTemplate>
+        </GroupStyle>
+      </ListView.GroupStyle>
+    </ListView>
+    </Grid>
+</Window>
