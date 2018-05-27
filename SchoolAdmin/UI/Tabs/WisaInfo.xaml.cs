@@ -92,14 +92,16 @@ namespace SchoolAdmin.UI.Tabs
       }
     }
 
-    private async void LoadStudents_Click(object sender, RoutedEventArgs e)
+    private async void LoadData_Click(object sender, RoutedEventArgs e)
     {
       Wisa.Students.Clear();
+      Wisa.ClassGroups.Clear();
 
       int students = 0;
+      int classGroups = 0;
       foreach(Parts.SchoolDetails detail in DetailsList)
       {
-        Global.Log.Add("Leerlingen van " + detail.School.Description + " worden geladen.");
+        Global.Log.Add("Leerlingen in " + detail.School.Description + " worden geladen.");
         bool result = await Wisa.Students.Add(detail.School, detail.Date.HasValue ? detail.Date.Value : DateTime.Now);
         if(result)
         {
@@ -107,11 +109,27 @@ namespace SchoolAdmin.UI.Tabs
           students = Wisa.Students.All.Count;
           Global.Log.Add("" + newStudents + " geladen");
 
-          StudentsTotal.Text = "Aantal leerlingen in Wisa: " + students;
+          StudentsTotal.Text = "" + students + " leerlingen in " + classGroups + " klassen.";
           detail.Students = "" + newStudents;
         } else
         {
           detail.Students = "Laden mislukt!";
+        }
+
+        Global.Log.Add("Klassen in " + detail.School.Description + " worden geladen.");
+        result = await Wisa.ClassGroups.Add(detail.School, detail.Date.HasValue ? detail.Date.Value : DateTime.Now);
+        if (result)
+        {
+          int newClassGroups = Wisa.ClassGroups.All.Count - classGroups;
+          classGroups = Wisa.ClassGroups.All.Count;
+          Global.Log.Add("" + newClassGroups + " geladen");
+
+          StudentsTotal.Text = "" + students + " leerlingen in " + classGroups + " klassen.";
+          detail.ClassGroups = "" + newClassGroups;
+        }
+        else
+        {
+          detail.ClassGroups = "Laden mislukt!";
         }
       }
     }

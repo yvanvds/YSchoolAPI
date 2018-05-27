@@ -25,6 +25,13 @@ namespace Smartschool
       await Reload();
     }
 
+    public static int Count(bool onlyClassGroups)
+    {
+      if (root == null) return 0;
+      if(onlyClassGroups) return root.CountClassGroupsOnly;
+      return root.Count;
+    }
+
     public static async Task Reload()
     {
       var result = await Task.Run(
@@ -76,11 +83,11 @@ namespace Smartschool
                 //Debug.WriteLine(current.Untis);
                 break;
               case "visible":
-                if (reader.Read()) current.Visible = reader.Value == "1" ? true : false;
+                if (reader.Read()) current.Visible = reader.Value.Equals("1") ? true : false;
                 //Debug.WriteLine(current.Visible);
                 break;
               case "isOfficial":
-                if (reader.Read()) current.Official = reader.Value == "1" ? true : false;
+                if (reader.Read()) current.Official = reader.Value.Equals("1") ? true : false;
                 //Debug.WriteLine(current.Official);
                 break;
               case "coAccountLabel":
@@ -126,6 +133,8 @@ namespace Smartschool
           }
         }
       }
+
+      if (root != null) Root.Sort();
     }
 
     public static async Task<bool> Save(IGroup group)

@@ -12,6 +12,9 @@
       <TabItem Header="Wisa">
         <tabs:WisaInfo x:Name="WisaInfo"></tabs:WisaInfo>
       </TabItem>
+      <TabItem Header="Smartschool">
+        <tabs:SmartschoolInfo x:Name="SmartschoolInfo"></tabs:SmartschoolInfo>
+      </TabItem>
     </TabControl>     
     </Grid>
 </UserControl>

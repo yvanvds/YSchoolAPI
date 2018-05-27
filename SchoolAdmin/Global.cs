@@ -9,5 +9,7 @@ namespace SchoolAdmin
   public static class Global
   {
     public static Logic.Log Log;
+
+    
   }
 }

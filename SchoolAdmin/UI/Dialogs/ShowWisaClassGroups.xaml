@@ -1,0 +1,26 @@
+﻿<Window x:Class="SchoolAdmin.UI.Dialogs.ShowWisaClassGroups"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SchoolAdmin.UI.Dialogs"
+        mc:Ignorable="d"
+        Title="ShowWisaClassGroups" Height="450" Width="800">
+    <Grid>
+    <ListView x:Name="lvClassGroups" Margin="10">
+      <ListView.Resources>
+        <Style TargetType="{x:Type GridViewColumnHeader}">
+          <Setter Property="HorizontalContentAlignment" Value="Left" />
+        </Style>
+      </ListView.Resources>
+      <ListView.View>
+        <GridView>
+          <GridViewColumn Header="Naam" Width="150" DisplayMemberBinding="{Binding Name}"/>
+          <GridViewColumn Header="Omschrijving" Width="100" DisplayMemberBinding="{Binding Description}"/>
+          <GridViewColumn Header="Admin Code" Width="80" DisplayMemberBinding="{Binding AdminCode}"/>
+          <GridViewColumn Header="Instelling" Width="80" DisplayMemberBinding="{Binding SchoolCode}"/>
+        </GridView>
+      </ListView.View>
+    </ListView>
+  </Grid>
+</Window>

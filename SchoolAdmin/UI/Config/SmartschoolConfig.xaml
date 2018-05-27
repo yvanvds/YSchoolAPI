@@ -14,6 +14,7 @@
     </Grid.ColumnDefinitions>
 
     <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical">
+      
       <GroupBox Header="Toegang" Margin="10">
         <StackPanel Orientation="Vertical">
           <Label Content="Smartschool URL:" Margin="10,10,10,0"></Label>
@@ -37,10 +38,91 @@
             <Button x:Name="ButtonConnectionTest" Content="Test Verbinding" Click="ButtonConnectionTest_Click"></Button>
             <TextBlock x:Name="ConnectionTestResult" Text="hidden" Foreground="Green" Visibility="Hidden" Margin="10,0,0,0"></TextBlock>
           </StackPanel>
-
         </StackPanel>
-        
       </GroupBox>
+
+      <GroupBox Header="Hoofdgroepen" Margin="10">
+        <Grid>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+          </Grid.RowDefinitions>
+
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="Leerlingen:" Margin="5" />
+          <TextBox Grid.Row="0" Grid.Column="1" x:Name="MainStudentGroup" Margin="5"/>
+
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="Personeel:" Margin="5" />
+          <TextBox Grid.Row="1" Grid.Column="1" x:Name="MainStaffGroup" Margin="5"/>
+
+        </Grid>
+      </GroupBox>
+    </StackPanel>
+
+    <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Vertical">
+
+      <GroupBox Header="Klassen" Margin="10">
+        <Grid>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+          </Grid.RowDefinitions>
+
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="Groepeer per graad" VerticalAlignment="Center"/>
+          <CheckBox Grid.Row="0" Grid.Column="1" x:Name="StudentGroupsGrade" Margin="5"/>
+          
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="Naam 1ste graad:" VerticalAlignment="Center" Margin="10,0,0,0"/>
+          <TextBox Grid.Row="1" Grid.Column="1" x:Name="NameGrade1" Margin="5"/>
+
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="Naam 2de graad:" VerticalAlignment="Center" Margin="10,0,0,0"/>
+          <TextBox Grid.Row="2" Grid.Column="1" x:Name="NameGrade2" Margin="5"/>
+
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="Naam 3de graad:" VerticalAlignment="Center" Margin="10,0,0,0"/>
+          <TextBox Grid.Row="3" Grid.Column="1" x:Name="NameGrade3" Margin="5"/>
+
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="Groepeer per jaar" VerticalAlignment="Center"/>
+          <CheckBox Grid.Row="4" Grid.Column="1" x:Name="StudentGroupsYear" Margin="5"/>
+
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="Naam 1ste jaar:" VerticalAlignment="Center" Margin="10,0,0,0"/>
+          <TextBox Grid.Row="5" Grid.Column="1" x:Name="NameYear1" Margin="5"/>
+
+          <TextBlock Grid.Row="6" Grid.Column="0" Text="Naam 2de jaar:" VerticalAlignment="Center" Margin="10,0,0,0"/>
+          <TextBox Grid.Row="6" Grid.Column="1" x:Name="NameYear2" Margin="5"/>
+
+          <TextBlock Grid.Row="7" Grid.Column="0" Text="Naam 3de jaar:" VerticalAlignment="Center" Margin="10,0,0,0"/>
+          <TextBox Grid.Row="7" Grid.Column="1" x:Name="NameYear3" Margin="5"/>
+
+          <TextBlock Grid.Row="8" Grid.Column="0" Text="Naam 4de jaar:" VerticalAlignment="Center" Margin="10,0,0,0"/>
+          <TextBox Grid.Row="8" Grid.Column="1" x:Name="NameYear4" Margin="5"/>
+
+          <TextBlock Grid.Row="9" Grid.Column="0" Text="Naam 5de jaar:" VerticalAlignment="Center" Margin="10,0,0,0"/>
+          <TextBox Grid.Row="9" Grid.Column="1" x:Name="NameYear5" Margin="5"/>
+
+          <TextBlock Grid.Row="10" Grid.Column="0" Text="Naam 6de jaar:" VerticalAlignment="Center" Margin="10,0,0,0"/>
+          <TextBox Grid.Row="10" Grid.Column="1" x:Name="NameYear6" Margin="5"/>
+
+          <TextBlock Grid.Row="11" Grid.Column="0" Text="Naam 7de jaar:" VerticalAlignment="Center" Margin="10,0,0,0"/>
+          <TextBox Grid.Row="11" Grid.Column="1" x:Name="NameYear7" Margin="5"/>
+        </Grid>
+      </GroupBox>
+      
     </StackPanel>
   </Grid>
 </UserControl>

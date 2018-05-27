@@ -54,7 +54,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Dialogs\ShowWisaStudents.xaml.cs">
+    <Compile Include="UI\Dialogs\ShowSmartschoolClassGroups.xaml.cs">
+      <DependentUpon>ShowSmartschoolClassGroups.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Dialogs\ShowSmartschoolStudents.xaml.cs">
+      <DependentUpon>ShowSmartschoolStudents.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Dialogs\ShowWisaClassGroups.xaml.cs">
+      <DependentUpon>ShowWisaClassGroups.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Dialogs\ShowWisaStudents.xaml.cs">
       <DependentUpon>ShowWisaStudents.xaml</DependentUpon>
     </Compile>
     <Compile Include="Global.cs" />
@@ -81,6 +90,9 @@
     <Compile Include="UI\Parts\SchoolDetails.xaml.cs">
       <DependentUpon>SchoolDetails.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Tabs\SmartschoolInfo.xaml.cs">
+      <DependentUpon>SmartschoolInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Tabs\WisaInfo.xaml.cs">
       <DependentUpon>WisaInfo.xaml</DependentUpon>
     </Compile>
@@ -90,7 +102,19 @@
     <Compile Include="UI\TreeView.xaml.cs">
       <DependentUpon>TreeView.xaml</DependentUpon>
     </Compile>
-    <Page Include="Dialogs\ShowWisaStudents.xaml">
+    <Page Include="UI\Dialogs\ShowSmartschoolClassGroups.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Dialogs\ShowSmartschoolStudents.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Dialogs\ShowWisaClassGroups.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Dialogs\ShowWisaStudents.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -131,6 +155,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Parts\SchoolDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Tabs\SmartschoolInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -190,6 +218,13 @@
       <Project>{683a1829-66de-4510-af2d-ee7e0515b99e}</Project>
       <Name>YSchoolInterface</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\briefcase.png" />
+    <Resource Include="Icons\users.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\user-green.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

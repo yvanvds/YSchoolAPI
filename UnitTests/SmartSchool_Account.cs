@@ -164,11 +164,14 @@ namespace UnitTests
     [TestMethod]
     public async Task GetListOfAccounts()
     {
-      Group group = new Group(null);
-      group.Name = Settings.Default.teachergroup;
+      await Smartschool.Groups.Reload();
 
-      IList<IAccount> accounts = await Smartschool.Accounts.GetAccounts(group);
-      Assert.IsNotNull(accounts);
+      IGroup students = Smartschool.Groups.Root.Find("Leerlingen");
+
+      bool result = await Smartschool.Accounts.LoadAccounts(students);
+      Assert.IsTrue(result);
+
+      Assert.IsTrue(students.NumAccounts() > 50);
     }
   }
 }

@@ -103,38 +103,53 @@ namespace Smartschool
       }
     }
 
-    public static async Task<IList<IAccount>> GetAccounts(IGroup group)
+    public static async Task<bool> LoadAccounts(IGroup group)
     {
-      var result = await Task.Run(
+      // children first
+      if (group.Children != null)
+      {
+        foreach (var g in group.Children)
+        {
+          bool result = await LoadAccounts(g);
+
+        }
+      }
+
+      var jsonResult = await Task.Run(
         () => Connector.service.getAllAccountsExtended(Connector.password, group.Name, "1")
       );
 
+      if(jsonResult is int)
+      {
+        // probably just a group without direct accounts
+        if((int)jsonResult == 19)
+        {
+          return true;
+        } else
+        {
+          return false;
+        }
+      }
+
       try
       {
-        List<JSONAccount> details = JsonConvert.DeserializeObject<List<JSONAccount>>(result.ToString());
-        List<IAccount> accounts = new List<IAccount>();
+        List<JSONAccount> details = JsonConvert.DeserializeObject<List<JSONAccount>>(jsonResult.ToString());
+
+        group.Accounts.Clear();
         foreach (var account in details)
         {
-          accounts.Add(new Account());
-          LoadFromJSON(accounts.Last(), account);
+          group.Accounts.Add(new Account());
+          LoadFromJSON(group.Accounts.Last(), account);
         }
 
-        return accounts;
+        return true;
       }
       catch(Exception e)
       {
         Error.AddError(e.Message);
 
-
-        int iResult = Convert.ToInt32(result);
-        if (iResult != 0)
-        {
-          Error.AddError(iResult);
-          return null;
-        }
-        return null;
+        return false;
       }
-      return null;
     } 
 
     public static async Task<bool> SetPassword(IAccount account, string password, AccountType type)

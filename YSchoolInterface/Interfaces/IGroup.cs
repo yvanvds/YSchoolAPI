@@ -20,7 +20,12 @@ namespace YSchoolAPI
 
     IGroup Parent { set; get; }
     List<IGroup> Children { set; get; }
+    List<IAccount> Accounts { set; get; }
 
     IGroup Find(string name);
+    int Count { get; }
+    int CountClassGroupsOnly { get; }
+    int NumAccounts();
+    void Sort();
   }
 }

@@ -1,0 +1,48 @@
+﻿<Window x:Class="SchoolAdmin.UI.Dialogs.ShowSmartschoolClassGroups"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SchoolAdmin.UI.Dialogs"
+        xmlns:ss="clr-namespace:Smartschool;assembly=Smartschool"
+        xmlns:yapi="clr-namespace:YSchoolAPI;assembly=YSchoolInterface"
+        mc:Ignorable="d"
+        Title="ShowSmartschoolClassGroups" Height="800" Width="500">
+
+  
+  <Grid Margin="10">
+    
+    <TreeView Name="Tree">
+      <TreeView.Resources>
+        <local:NegateBooleanConverter x:Key="inverter"/>
+        <local:BooleanConverter x:Key="converter"/>
+        <HierarchicalDataTemplate DataType="{x:Type ss:Group}" ItemsSource="{Binding Children}">
+          <StackPanel>
+            <StackPanel Orientation="Horizontal" Visibility="{Binding Count, Converter={StaticResource inverter}}">
+              <Image Source="/Icons/users.png" Margin="0,0,5,0"/>
+              <TextBlock Text="{Binding Name}"/>
+              <TextBlock Text=" [" Foreground="Blue" />
+              <TextBlock Text="{Binding Children.Count}" Foreground="Blue" />
+              <TextBlock Text="]" Foreground="Blue" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Visibility="{Binding Count, Converter={StaticResource converter}}">
+              <Image Source="/Icons/briefcase.png" Margin="0,0,5,0" />
+              <TextBlock Text="{Binding Name}" />
+              <TextBlock Text=" (" Foreground="Green" />
+              <TextBlock Text="{Binding Description}" Foreground="Green" />
+              <TextBlock Text=" )" Foreground="Green" />
+            </StackPanel>
+          </StackPanel>
+
+        </HierarchicalDataTemplate>
+        <DataTemplate DataType="{x:Type yapi:IAccount}" >
+          <StackPanel Orientation="Horizontal">
+            <Image Source="/Icons/user-green.png" Margin="0,0,5,0"/>
+            <TextBlock Text="{Binding SurName}" Margin="0,0,5,0"/>
+            <TextBlock Text="{Binding GivenName}"/>
+          </StackPanel>
+        </DataTemplate>
+      </TreeView.Resources>
+    </TreeView>
+    </Grid>
+</Window>

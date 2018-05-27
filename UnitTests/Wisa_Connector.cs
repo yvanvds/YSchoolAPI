@@ -75,5 +75,23 @@ namespace UnitTests
       Wisa.Students.Clear();
       Assert.IsTrue(Wisa.Students.All.Count == 0);
     }
+
+    [TestMethod]
+    public async Task LoadClassGroups()
+    {
+      Wisa.School school = new Wisa.School(
+        Properties.Settings.Default.WisaLoadStudentsFromSchool,
+        "TEST",
+        "Does not matter"
+      );
+
+      Wisa.ClassGroups.Clear();
+      bool result = await Wisa.ClassGroups.Add(school);
+      Assert.IsTrue(result);
+      Assert.IsTrue(Wisa.ClassGroups.All.Count > 0);
+
+      Wisa.ClassGroups.Clear();
+      Assert.IsTrue(Wisa.ClassGroups.All.Count == 0);
+    }
   }
 }

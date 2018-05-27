@@ -30,6 +30,20 @@ namespace SchoolAdmin.UI.Config
       Url.Text = Properties.Settings.Default.SmartschoolURL;
       ApiKey.Text = Properties.Settings.Default.SmartschoolKey;
       TestAccount.Text = Properties.Settings.Default.SmartschoolTestAccount;
+      MainStudentGroup.Text = Properties.Settings.Default.SmartschoolStudents;
+      MainStaffGroup.Text = Properties.Settings.Default.SmartschoolStaff;
+      StudentGroupsGrade.IsChecked = Properties.Settings.Default.SmartschoolUseGrade;
+      StudentGroupsYear.IsChecked = Properties.Settings.Default.SmartschoolUseYear;
+      NameGrade1.Text = Properties.Settings.Default.SmartschoolGrade1;
+      NameGrade2.Text = Properties.Settings.Default.SmartschoolGrade2;
+      NameGrade3.Text = Properties.Settings.Default.SmartschoolGrade3;
+      NameYear1.Text = Properties.Settings.Default.SmartschoolYear1;
+      NameYear2.Text = Properties.Settings.Default.SmartschoolYear2;
+      NameYear3.Text = Properties.Settings.Default.SmartschoolYear3;
+      NameYear4.Text = Properties.Settings.Default.SmartschoolYear4;
+      NameYear5.Text = Properties.Settings.Default.SmartschoolYear5;
+      NameYear6.Text = Properties.Settings.Default.SmartschoolYear6;
+      NameYear7.Text = Properties.Settings.Default.SmartschoolYear7;
     }
 
     public void Save()
@@ -37,6 +51,20 @@ namespace SchoolAdmin.UI.Config
       Properties.Settings.Default.SmartschoolURL = Url.Text.Trim();
       Properties.Settings.Default.SmartschoolKey = ApiKey.Text.Trim();
       Properties.Settings.Default.SmartschoolTestAccount = TestAccount.Text.Trim();
+      Properties.Settings.Default.SmartschoolStudents = MainStudentGroup.Text.Trim();
+      Properties.Settings.Default.SmartschoolStaff = MainStaffGroup.Text.Trim();
+      Properties.Settings.Default.SmartschoolUseGrade = StudentGroupsGrade.IsChecked.Value;
+      Properties.Settings.Default.SmartschoolUseYear = StudentGroupsYear.IsChecked.Value;
+      Properties.Settings.Default.SmartschoolGrade1 = NameGrade1.Text.Trim();
+      Properties.Settings.Default.SmartschoolGrade2 = NameGrade2.Text.Trim();
+      Properties.Settings.Default.SmartschoolGrade3 = NameGrade3.Text.Trim();
+      Properties.Settings.Default.SmartschoolYear1 = NameYear1.Text.Trim();
+      Properties.Settings.Default.SmartschoolYear2 = NameYear2.Text.Trim();
+      Properties.Settings.Default.SmartschoolYear3 = NameYear3.Text.Trim();
+      Properties.Settings.Default.SmartschoolYear4 = NameYear4.Text.Trim();
+      Properties.Settings.Default.SmartschoolYear5 = NameYear5.Text.Trim();
+      Properties.Settings.Default.SmartschoolYear6 = NameYear6.Text.Trim();
+      Properties.Settings.Default.SmartschoolYear7 = NameYear7.Text.Trim();
     }
 
     private async void ButtonConnectionTest_Click(object sender, RoutedEventArgs e)

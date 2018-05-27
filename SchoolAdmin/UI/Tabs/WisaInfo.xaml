@@ -28,7 +28,7 @@
       <Button Grid.Column="1" Grid.Row="0" x:Name="Connect" Content="Maak Verbinding" Padding="5" Margin="0,5" Click="Connect_Click"/>
 
       <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" x:Name="StudentsTotal" Text="Aantal leerlingen in Wisa: 0"/>
-        <Button Grid.Column="1" Grid.Row="1" x:Name="LoadStudents" Padding="5" Margin="0,5" Content="Laad Leerlingen" Click="LoadStudents_Click"/>
+        <Button Grid.Column="1" Grid.Row="1" x:Name="LoadData" Padding="5" Margin="0,0,0,5" Content="Laad Gegevens" Click="LoadData_Click"/>
 
       
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,7 +34,7 @@ namespace Smartschool
     public bool Visible { get => visible; set => visible = value; }
 
     bool official = false;
-    public bool Official { get => official; set => official = false; }
+    public bool Official { get => official; set => official = value; }
 
     string coAccountLabel = string.Empty;
     public string CoAccountLabel { get => coAccountLabel; set => coAccountLabel = value; }
@@ -50,6 +51,9 @@ namespace Smartschool
     List<IGroup> children;
     public List<IGroup> Children { get => children; set => children = value; }
 
+    List<IAccount> accounts = new List<IAccount>();
+    public List<IAccount> Accounts { get => accounts; set => accounts = value; }
+
     public IGroup Parent { get; set; } = null;
 
     public IGroup Find(string name)
@@ -64,6 +68,73 @@ namespace Smartschool
         if (result != null) return result;
       }
       return null;
+    }
+
+    public int CountClassGroupsOnly
+    {
+      get
+      {
+        int count = 0;
+        if (children != null) foreach (var group in children)
+          {
+            count += group.CountClassGroupsOnly;
+          }
+        if (Official)
+        {
+          count++;
+        }
+
+        return count;
+      }
+    }
+
+    public int Count
+    {
+      get
+      {
+        int count = 0;
+        if (children != null) foreach (var group in children)
+          {
+            count += group.Count;
+          }
+        count++;
+        
+
+        return count;
+      }
+    }
+
+    public int NumAccounts()
+    {
+      int count = 0;
+      if (children != null) {
+        foreach (var group in children)
+        {
+          try
+          {
+            count += group.NumAccounts();
+          } catch (Exception e)
+          {
+            Debug.WriteLine(e.Message + "in group " + group.Name);    
+          }      
+        }
+      }
+      if(Accounts != null)
+      {
+        count += Accounts.Count;
+      }
+        
+      return count;
+    }
+
+    public void Sort()
+    {
+      if (children == null) return;
+      children.Sort((x, y) => x.Name.CompareTo(y.Name));
+      foreach(var child in children)
+      {
+        child.Sort();
+      }
     }
   }
 }
