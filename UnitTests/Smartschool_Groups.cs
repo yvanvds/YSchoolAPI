@@ -75,8 +75,8 @@ namespace UnitTests
       result = await Smartschool.Groups.AddUserToGroup(testaccount, testgroup);
       Assert.IsTrue(result);
 
-      result = await Smartschool.Accounts.LoadAccounts(testgroup);
-      Assert.IsTrue(result);
+      await Smartschool.Accounts.LoadAccounts(testgroup);
+
       bool found = false;
       foreach(var account in testgroup.Accounts)
       {
@@ -91,8 +91,8 @@ namespace UnitTests
       result = await Smartschool.Groups.RemoveUserFromGroup(testaccount, testgroup);
       Assert.IsTrue(result);
 
-      result = await Smartschool.Accounts.LoadAccounts(testgroup);
-      Assert.IsTrue(result);
+      await Smartschool.Accounts.LoadAccounts(testgroup);
+
       found = false;
       foreach (var account in testgroup.Accounts)
       {

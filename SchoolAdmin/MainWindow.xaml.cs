@@ -35,5 +35,11 @@ namespace SchoolAdmin
       //Window window = new UI.Config.ConfigWindow();
       //window.ShowDialog();
     }
+
+    protected override void OnClosed(EventArgs e)
+    {
+      base.OnClosed(e);
+      OpenLdap.Connector.Close();
+    }
   }
 }

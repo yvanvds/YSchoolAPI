@@ -47,9 +47,27 @@ namespace Google
         string ID = values.client_id;
         string tokenURI = values.token_uri;
 
+        return Init(appName, user, domain, key, ID, tokenURI, log);
+      }
+      catch (Exception e)
+      {
+        Error.AddError(e.Message);
+        return false;
+      }
 
+    }
+
+    public static bool Init(string appName, string user, string domain, string key, string ID, string token, ILog log = null)
+    {
+      Domain = domain;
+      Error.log = log;
+
+      ServiceAccountCredential credential;
+
+      try
+      {
         credential = new ServiceAccountCredential(
-            new ServiceAccountCredential.Initializer(ID, tokenURI)
+            new ServiceAccountCredential.Initializer(ID, token)
             {
               User = user,
               Scopes = scopes
@@ -71,6 +89,5 @@ namespace Google
       Error.AddMessage("Connection Suceeded");
       return true;
     }
-
   }
 }

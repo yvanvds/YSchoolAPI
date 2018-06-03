@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -134,6 +135,56 @@ namespace Smartschool
       foreach(var child in children)
       {
         child.Sort();
+      }
+    }
+
+    public void GetTreeAsList(List<IGroup> list)
+    {
+
+      if (children != null)
+      {
+        foreach (var child in children)
+        {
+          child.GetTreeAsList(list);
+        }
+      }
+
+      list.Add(this);
+    }
+
+    public async Task LoadAccounts()
+    {
+      var jsonResult = await Task.Run(
+       () => Connector.service.getAllAccountsExtended(Connector.password, Name, "0")
+      );
+
+      if (jsonResult is int)
+      {
+        // probably just a group without direct accounts
+        if ((int)jsonResult == 19)
+        {
+          return;
+        } else
+        {
+          Error.AddError((int)jsonResult);
+          return;
+        }
+      }
+
+      try
+      {
+        List<JSONAccount> details = JsonConvert.DeserializeObject<List<JSONAccount>>(jsonResult.ToString());
+
+        Accounts.Clear();
+        foreach (var account in details)
+        {
+          Accounts.Add(new Account());
+          Smartschool.Accounts.LoadFromJSON(Accounts.Last(), account);
+        }
+      }
+      catch (Exception e)
+      {
+        Error.AddError(e.Message);
       }
     }
   }

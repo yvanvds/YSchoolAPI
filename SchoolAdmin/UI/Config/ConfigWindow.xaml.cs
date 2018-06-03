@@ -26,12 +26,18 @@ namespace SchoolAdmin.UI.Config
 
       Wisa.Load();
       Smartschool.Load();
+      Google.Load();
+      OpenLdap.Load();
+      AD.Load();
     }
 
     protected override void OnClosing(CancelEventArgs e)
     {
       Wisa.Save();
       Smartschool.Save();
+      Google.Save();
+      OpenLdap.Save();
+      AD.Save();
       Properties.Settings.Default.Save();
       base.OnClosing(e);
     }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SchoolAdmin.UI.Config"
         Background="Gray"
         mc:Ignorable="d"
-        Title="Configuratie" Height="450" Width="800">
+        Title="Configuratie" Height="550" Width="800">
     <Grid>
     <TabControl TabStripPlacement="Left">
       <TabItem Header="Algemeen">
@@ -16,10 +16,13 @@
         <local:WisaConfig x:Name="Wisa"></local:WisaConfig>
       </TabItem>
       <TabItem Header="AD">
-        
+        <local:ADConfig x:Name="AD"></local:ADConfig>
+      </TabItem>
+      <TabItem Header="OpenLdap">
+        <local:OpenLdapConfig x:Name="OpenLdap"></local:OpenLdapConfig>
       </TabItem>
       <TabItem Header="Google">
-        
+        <local:GoogleConfig x:Name="Google"></local:GoogleConfig>
       </TabItem>
       <TabItem Header="Smartschool">
         <local:SmartschoolConfig x:Name="Smartschool"></local:SmartschoolConfig>

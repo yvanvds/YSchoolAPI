@@ -23,6 +23,20 @@ namespace SchoolAdmin.UI
     public MainView()
     {
       InitializeComponent();
+      Global.View = this;
+    }
+
+    public void WaitForTask(string message)
+    {
+      BusyIndicator.Visibility = Visibility.Visible;
+      Tabs.Visibility = Visibility.Collapsed;
+      Message.Text = message;
+    }
+
+    public void TaskIsDone()
+    {
+      BusyIndicator.Visibility = Visibility.Collapsed;
+      Tabs.Visibility = Visibility.Visible;
     }
   }
 }

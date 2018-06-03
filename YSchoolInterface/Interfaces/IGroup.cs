@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace YSchoolAPI
 {
@@ -27,5 +28,8 @@ namespace YSchoolAPI
     int CountClassGroupsOnly { get; }
     int NumAccounts();
     void Sort();
+    void GetTreeAsList(List<IGroup> list);
+
+    Task LoadAccounts();
   }
 }

@@ -82,21 +82,22 @@ namespace SchoolAdmin.UI.Tabs
 
       Global.Log.Add("(Smartschool) Leerlingen worden geladen...", false);
       YSchoolAPI.IGroup students = Smartschool.Groups.Root.Find(Properties.Settings.Default.SmartschoolStudents);
-      bool result = await Smartschool.Accounts.LoadAccounts(students);
+      await Smartschool.Accounts.LoadAccounts(students);
 
       int count = students.NumAccounts();
 
-      if(!result || count == 0)
+      if(count == 0)
       {
         ShowStudents.IsEnabled = false;
         Status.Text = "Geen leerlingen gevonden";
         Status.Foreground = Brushes.Red;
+        Global.Log.Add("(Smartschool) Geen leerlingen gevonden.", true);
       } else
       {
         ShowStudents.IsEnabled = true;
         Status.Text = "Klassen en leerlingen zijn geladen.";
         Status.Foreground = Brushes.Green;
-        
+        Global.Log.Add("(Smartschool) Leerlingen zijn geladen.", false);
       }
 
       Students.Text = "Aaantal Leerlingen: " + count;

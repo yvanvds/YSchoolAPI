@@ -99,7 +99,7 @@ namespace Wisa
           {
             All.Add(new School(Convert.ToInt32(values[0]), values[2], values[1]));
           }
-          catch(Exception e)
+          catch(Exception)
           {
             
           }

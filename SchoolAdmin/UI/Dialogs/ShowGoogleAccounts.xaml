@@ -1,0 +1,39 @@
+﻿<Window x:Class="SchoolAdmin.UI.Dialogs.ShowGoogleAccounts"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SchoolAdmin.UI.Dialogs"
+        mc:Ignorable="d"
+        Title="Google Accounts" Height="450" Width="800">
+    <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="40"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+    <StackPanel Grid.Row="0" Orientation="Horizontal">
+      <CheckBox x:Name="CheckStudents" VerticalAlignment="Center" Margin="10" Checked="CheckStudents_Checked"/>
+      <Label Content="Toon Leerlingen" Margin="10,0" VerticalAlignment="Center"/>
+      <CheckBox x:Name="CheckStaff" VerticalAlignment="Center" Margin="10" Checked="CheckStudents_Checked"/>
+      <Label Content="Toon Personeel" Margin="10,0" VerticalAlignment="Center"/>
+    </StackPanel>
+    <ListView x:Name="lvAccounts" Grid.Row="1" Margin="10">
+      <ListView.Resources>
+        <Style TargetType="{x:Type GridViewColumnHeader}">
+          <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        </Style>
+      </ListView.Resources>
+      <ListView.View>
+        <GridView>
+          <GridViewColumn Header="Naam" Width="150" DisplayMemberBinding="{Binding FamilyName}"/>
+          <GridViewColumn Header="Voornaam" Width="80" DisplayMemberBinding="{Binding GivenName}"/>
+          <GridViewColumn Header="Account" Width="100" DisplayMemberBinding="{Binding UID}"/>
+          <GridViewColumn Header="Alias" Width="200" DisplayMemberBinding="{Binding MailAlias}"/>
+        </GridView>
+      </ListView.View>
+
+      
+
+    </ListView>
+    </Grid>
+</Window>

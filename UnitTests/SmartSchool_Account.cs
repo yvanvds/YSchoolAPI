@@ -168,9 +168,7 @@ namespace UnitTests
 
       IGroup students = Smartschool.Groups.Root.Find("Leerlingen");
 
-      bool result = await Smartschool.Accounts.LoadAccounts(students);
-      Assert.IsTrue(result);
-
+      await Smartschool.Accounts.LoadAccounts(students);
       Assert.IsTrue(students.NumAccounts() > 50);
     }
   }

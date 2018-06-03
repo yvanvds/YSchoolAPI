@@ -103,54 +103,24 @@ namespace Smartschool
       }
     }
 
-    public static async Task<bool> LoadAccounts(IGroup group)
+    public static async Task LoadAccounts(IGroup group)
     {
-      // children first
-      if (group.Children != null)
+      List<IGroup> list = new List<IGroup>();
+      group.GetTreeAsList(list);
+
+      List<Task> TaskList = new List<Task>();
+
+      for(int i = 0; i < list.Count; i++)
       {
-        foreach (var g in group.Children)
-        {
-          bool result = await LoadAccounts(g);
-
-        }
+        TaskList.Add(list[i].LoadAccounts());
       }
-
-      var jsonResult = await Task.Run(
-        () => Connector.service.getAllAccountsExtended(Connector.password, group.Name, "1")
+      await Task.Run(
+        () => Task.WaitAll(TaskList.ToArray())
       );
-
-      if(jsonResult is int)
-      {
-        // probably just a group without direct accounts
-        if((int)jsonResult == 19)
-        {
-          return true;
-        } else
-        {
-          return false;
-        }
-      }
-
-      try
-      {
-        List<JSONAccount> details = JsonConvert.DeserializeObject<List<JSONAccount>>(jsonResult.ToString());
-
-        group.Accounts.Clear();
-        foreach (var account in details)
-        {
-          group.Accounts.Add(new Account());
-          LoadFromJSON(group.Accounts.Last(), account);
-        }
-
-        return true;
-      }
-      catch(Exception e)
-      {
-        Error.AddError(e.Message);
-
-        return false;
-      }
+      
     } 
+
+   
 
     public static async Task<bool> SetPassword(IAccount account, string password, AccountType type)
     {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SchoolAdmin.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,6 @@ namespace SchoolAdmin
   {
     public static Logic.Log Log;
 
-    
+    public static MainView View;
   }
 }
