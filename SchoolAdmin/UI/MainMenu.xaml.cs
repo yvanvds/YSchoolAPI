@@ -30,5 +30,45 @@ namespace SchoolAdmin.UI
       Window window = new Config.ConfigWindow();
       window.ShowDialog();
     }
-  }
+
+		private void ConnectBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+		{
+			e.CanExecute = !Global.Connector.Connected;
+		}
+
+		private async void ConnectBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			if(!Global.Connector.ValidateConfig())
+			{
+				MessageBox.Show("Invalid Configuration", "Error");
+				return;
+			}
+
+			Global.View.WaitForTask("Connecting to data sources...");
+			bool result = await Global.Connector.ConnectAll();
+			if(!result)
+			{
+				Global.View.TaskIsDone();
+				return;
+			}
+
+			var window = new UI.Dialogs.SelectWisaSchools();
+			window.ShowDialog();
+
+			Global.View.WaitForTask("Loading Data...");
+			await Global.DataManager.LoadAllData();
+			Global.View.TaskIsDone();
+
+			Global.View.ShowOnly(TabView.SYNCVIEW);
+		}
+	}
+
+	public static class Commands
+	{
+		public static readonly RoutedUICommand Connect = new RoutedUICommand(
+			"Connect",
+			"Connect",
+			typeof(Commands)
+		);
+	}
 }

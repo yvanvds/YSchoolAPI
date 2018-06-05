@@ -18,25 +18,88 @@ namespace SchoolAdmin.UI
   /// <summary>
   /// Interaction logic for MainView.xaml
   /// </summary>
+	/// 
+	public enum TabView
+	{
+		WISA,
+		AD,
+		SMARTSCHOOL,
+		GOOGLE,
+		LDAP,
+		SYNCVIEW,
+	}
+
   public partial class MainView : UserControl
   {
     public MainView()
     {
       InitializeComponent();
       Global.View = this;
+			HideAllTabs();
     }
 
     public void WaitForTask(string message)
     {
-      BusyIndicator.Visibility = Visibility.Visible;
-      Tabs.Visibility = Visibility.Collapsed;
-      Message.Text = message;
+			Application.Current.Dispatcher.Invoke(new Action(() =>
+			{
+				BusyIndicator.Visibility = Visibility.Visible;
+				Tabs.Visibility = Visibility.Collapsed;
+				Message.Text = message;
+			}));  
     }
 
     public void TaskIsDone()
     {
-      BusyIndicator.Visibility = Visibility.Collapsed;
-      Tabs.Visibility = Visibility.Visible;
+			Application.Current.Dispatcher.Invoke(new Action(() =>
+			{
+				BusyIndicator.Visibility = Visibility.Collapsed;
+				Tabs.Visibility = Visibility.Visible;
+			}));
+			
     }
-  }
+
+		public void HideAllTabs()
+		{
+			WisaTab.Visibility = Visibility.Collapsed;
+			ADTab.Visibility = Visibility.Collapsed;
+			SmartschoolTab.Visibility = Visibility.Collapsed;
+			GoogleTab.Visibility = Visibility.Collapsed;
+			SyncTab.Visibility = Visibility.Collapsed;
+			OpenLdapTab.Visibility = Visibility.Collapsed;
+			Tabs.Visibility = Visibility.Hidden;
+		}
+
+		public void ShowOnly(TabView view)
+		{
+			HideAllTabs();
+			Show(view);
+		}
+
+		public void Show(TabView view)
+		{ 
+			switch (view)
+			{
+				case TabView.AD:
+					ADTab.Visibility = Visibility.Visible;
+					break;
+				case TabView.WISA:
+					WisaTab.Visibility = Visibility.Visible;
+					break;
+				case TabView.GOOGLE:
+					GoogleTab.Visibility = Visibility.Visible;
+					break;
+				case TabView.SMARTSCHOOL:
+					SmartschoolTab.Visibility = Visibility.Visible;
+					break;
+				case TabView.LDAP:
+					OpenLdapTab.Visibility = Visibility.Visible;
+					break;
+				case TabView.SYNCVIEW:
+					SyncTab.Visibility = Visibility.Visible;
+					SyncInfo.Reload();
+					break;
+			}
+			Tabs.Visibility = Visibility.Visible;
+		}
+	}
 }

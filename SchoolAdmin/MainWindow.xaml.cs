@@ -31,10 +31,15 @@ namespace SchoolAdmin
       Thread.CurrentThread.CurrentUICulture = culture;
 
       Global.Log = new Logic.Log(LogView);
+			
 
-      //Window window = new UI.Config.ConfigWindow();
-      //window.ShowDialog();
-    }
+			if(!Global.Connector.ValidateConfig())
+			{
+				Window window = new UI.Config.ConfigWindow();
+				window.ShowDialog();
+			}
+
+		}
 
     protected override void OnClosed(EventArgs e)
     {

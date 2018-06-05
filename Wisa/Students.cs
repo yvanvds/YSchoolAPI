@@ -37,10 +37,11 @@ namespace Wisa
       values.Add(new WISA.TWISAAPIParamValue());
       values.Last().Name = "Werkdatum";
       DateTime date;
-      if(!workdate.HasValue)
+      if (!workdate.HasValue)
       {
         date = DateTime.Now;
-      } else
+      }
+      else
       {
         date = workdate.Value;
       }
@@ -54,16 +55,18 @@ namespace Wisa
         return false;
       }
 
-      using(StringReader reader = new StringReader(result))
+			int count = 0;
+			using (StringReader reader = new StringReader(result))
       {
         string line = reader.ReadLine();
-        if(!line.Equals("KLAS,NAAM,VOORNAAM,GEBOORTEDATUM,WISAID,STAMBOEKNUMMER,GESLACHT,RIJKSREGISTERNR,GEBOORTEPLAATS,NATIONALITEIT,STRAAT,STRAATNR,BUSNR,POSTCODE,WOONPLAATS,KLASWIJZIGING"))
+        if (!line.Equals("KLAS,NAAM,VOORNAAM,GEBOORTEDATUM,WISAID,STAMBOEKNUMMER,GESLACHT,RIJKSREGISTERNR,GEBOORTEPLAATS,NATIONALITEIT,STRAAT,STRAATNR,BUSNR,POSTCODE,WOONPLAATS,KLASWIJZIGING"))
         {
           Connector.Log?.Add("Wisa Error while getting students. Headers do not match.", true);
           return false;
         }
 
-        while(true)
+				
+        while (true)
         {
           line = reader.ReadLine();
           if (line == null) break;
@@ -71,8 +74,9 @@ namespace Wisa
           try
           {
             all.Add(new Student(line, school.ID));
+						count++;
           }
-          catch(Exception e)
+          catch (Exception e)
           {
             Connector.Log?.Add("Wisa Parse error (" + e.Message + ") on line " + line, true);
             return false;
@@ -80,7 +84,7 @@ namespace Wisa
         }
       }
 
-      Connector.Log?.Add("Wisa: Loading students from " + school.Name + " succeeded.");
+      Connector.Log?.Add("Wisa: Loading "+ count.ToString() + "students from " + school.Name + " succeeded.");
       return true;
     } 
   }

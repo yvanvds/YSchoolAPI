@@ -79,7 +79,7 @@ namespace SchoolAdmin.UI.Config
       Properties.Settings.Default.ADNameYear7 = NameYear7.Text.Trim();
     }
 
-    private async void ButtonConnectionTest_Click(object sender, RoutedEventArgs e)
+    private void ButtonConnectionTest_Click(object sender, RoutedEventArgs e)
     {
       bool result = AD.Connector.Init(
         ADDomain.Text.Trim(),

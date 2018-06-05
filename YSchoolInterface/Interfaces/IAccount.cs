@@ -34,5 +34,7 @@ namespace YSchoolAPI
     string Fax { set; get; }
     string Mail { set; get; }
     string MailAlias { set; get; }
-  }
+
+		string Group { get; set; }
+	}
 }

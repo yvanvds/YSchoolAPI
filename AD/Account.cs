@@ -32,11 +32,14 @@ namespace AD
 
     
 
-    public string UID { get => dEntry.Properties["sAMAccountName"].Value.ToString(); }
-    public string FirstName { get => dEntry.Properties["givenName"].Value.ToString(); }
-    public string LastName { get => dEntry.Properties["sn"].Value.ToString(); }
-    public string FullName { get => dEntry.Properties["displayname"].Value.ToString(); }
-    public string MailAlias { get => dEntry.Properties["smamailalias"].Value.ToString(); }
+    public string UID { get => dEntry.Properties.Contains("sAMAccountName") ? dEntry.Properties["sAMAccountName"].Value.ToString() : ""; }
+    public string FirstName { get => dEntry.Properties.Contains("givenName") ? dEntry.Properties["givenName"].Value.ToString() : ""; }
+    public string LastName { get => dEntry.Properties.Contains("sn") ? dEntry.Properties["sn"].Value.ToString() : ""; }
+    public string FullName { get => dEntry.Properties.Contains("displayname") ? dEntry.Properties["displayname"].Value.ToString() : ""; }
+    public string MailAlias { get => dEntry.Properties.Contains("smamailalias") ? dEntry.Properties["smamailalias"].Value.ToString() : ""; }
+		public string WisaID { get => dEntry.Properties.Contains("smaWisaID") ? dEntry.Properties["smaWisaID"].Value.ToString() : ""; }
+		public string WisaName { get => dEntry.Properties.Contains("smawisaname") ? dEntry.Properties["smawisaname"].Value.ToString() : ""; }
+		public string ClassGroup { get => dEntry.Properties.Contains("smaClass") ? dEntry.Properties["smaClass"].Value.ToString() : ""; }
 
     public void Disable()
     {

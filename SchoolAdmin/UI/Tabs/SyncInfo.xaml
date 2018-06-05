@@ -1,0 +1,151 @@
+﻿<UserControl x:Class="SchoolAdmin.UI.Tabs.SyncInfo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SchoolAdmin.UI.Tabs"
+             mc:Ignorable="d" 
+						 Background="LightGray"
+             d:DesignHeight="450" d:DesignWidth="800">
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="1*"/>
+			<ColumnDefinition Width="1*"/>
+		</Grid.ColumnDefinitions>
+
+
+		<StackPanel Orientation="Vertical">
+			<GroupBox Header="Leerlingen" Margin="5">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="200"/>
+						<ColumnDefinition Width="50"/>
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition/>
+						<RowDefinition/>
+						<RowDefinition/>
+					</Grid.RowDefinitions>
+
+					<Label Grid.Row="0" Grid.Column="0" Margin="5" Content="Wisa: "/>
+					<Label Grid.Row="0" Grid.Column="1" x:Name="WisaStudentAccounts" Margin="5"/>
+
+					<Label Grid.Row="1" Grid.Column="0" Margin="5" Content="Active Directory: "/>
+					<Label Grid.Row="1" Grid.Column="1" x:Name="ADStudentAccounts" Margin="5"/>
+
+					<Label Grid.Row="2" Grid.Column="0" Margin="5" Content="Smartschool: "/>
+					<Label Grid.Row="2" Grid.Column="1" x:Name="SmartschoolStudentAccounts" Margin="5"/>
+
+				</Grid>
+			</GroupBox>
+
+			<GroupBox Header="Personeel" Margin="5">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="200"/>
+						<ColumnDefinition Width="50"/>
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition/>
+						<RowDefinition/>
+						<RowDefinition/>
+						<RowDefinition/>
+						<RowDefinition/>
+					</Grid.RowDefinitions>
+
+					<Label Grid.Row="0" Grid.Column="0" Margin="5" Content="Wisa: "/>
+					<Label Grid.Row="0" Grid.Column="1" x:Name="WisaStaffAccounts" Margin="5"/>
+
+					<Label Grid.Row="1" Grid.Column="0" Margin="5" Content="Active Directory: "/>
+					<Label Grid.Row="1" Grid.Column="1" x:Name="ADStaffAccounts" Margin="5"/>
+
+					<Label Grid.Row="2" Grid.Column="0" Margin="5" Content="Smartschool: "/>
+					<Label Grid.Row="2" Grid.Column="1" x:Name="SmartschoolStaffAccounts" Margin="5"/>
+
+					<Label Grid.Row="3" Grid.Column="0" Margin="5" Content="Google: "/>
+					<Label Grid.Row="3" Grid.Column="1" x:Name="GoogleStaffAccounts" Margin="5"/>
+
+					<Label Grid.Row="4" Grid.Column="0" Margin="5" Content="Ldap: "/>
+					<Label Grid.Row="4" Grid.Column="1" x:Name="LdapStaffAccounts" Margin="5"/>
+				</Grid>
+			</GroupBox>
+
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="100"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="100"/>
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="40"/>
+					<RowDefinition Height="40"/>
+					<RowDefinition Height="40"/>
+				</Grid.RowDefinitions>
+
+				<Button Grid.Row="0" Grid.Column="0" x:Name="SyncClasses" Content="Vergelijk Klassen" Margin="5" Click="SyncClasses_Click"/>
+
+				<Button Grid.Row="1" Grid.Column="0" x:Name="SyncStudents" Content="Vergelijk Leerlingen" Margin="5" Click="SyncStudents_Click"/>
+				<Button Grid.Row="1" Grid.Column="2" x:Name="ShowAllAccounts" Visibility="Hidden" Content="Toon Accounts" Margin="5" Click="ShowAllAccounts_Click"/>
+
+				<Button Grid.Row="2" Grid.Column="0" x:Name="SyncStaff" Content="Vergelijk Personeel" Margin="5" Click="SyncStaff_Click"/>
+			</Grid>
+
+		</StackPanel>
+
+		<GroupBox Visibility="Hidden" Header="Voorgestelde Wijzigingen"  Grid.Row="0" Grid.Column="1" x:Name="Actions">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="50"/>
+					<ColumnDefinition Width="80"/>
+					<ColumnDefinition Width="80"/>
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="50"/>
+					<RowDefinition Height="50"/>
+					<RowDefinition Height="50"/>
+					<RowDefinition Height="50"/>
+					<RowDefinition Height="50"/>
+					<RowDefinition Height="50"/>
+					<RowDefinition Height="50"/>
+				</Grid.RowDefinitions>
+
+				<Label Grid.Row="0" Grid.Column="0" Margin="5" VerticalAlignment="Center" Content="Te Verwijderen uit Directory"/>
+				<Label Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center" x:Name="ClassChangeCount" Content="0"/>
+				<Button Grid.Row="0" Grid.Column="2" Margin="5" x:Name="ViewClassChanges" Content="Toon" Click="ViewClassChanges_Click"/>
+				<Button Grid.Row="0" Grid.Column="3" Margin="5" x:Name="DoClassChanges" Content="Voer Uit" Click="DoClassChanges_Click"/>
+				
+				<Label Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center" Content="Te Verwijderen uit Directory"/>
+				<Label Grid.Row="1" Grid.Column="1" Margin="5" VerticalAlignment="Center" x:Name="ADRemoveCount" Content="0"/>
+				<Button Grid.Row="1" Grid.Column="2" Margin="5" x:Name="ViewADRemovals" Content="Toon" Click="ViewADRemovals_Click"/>
+				<Button Grid.Row="1" Grid.Column="3" Margin="5" x:Name="DoADRemovals" Content="Voer Uit" Click="DoADRemovals_Click"/>
+
+				<Label Grid.Row="2" Grid.Column="0" Margin="5" VerticalAlignment="Center" Content="Te Verwijderen uit Smartschool"/>
+				<Label Grid.Row="2" Grid.Column="1" Margin="5" VerticalAlignment="Center" x:Name="SSRemoveCount" Content="0"/>
+				<Button Grid.Row="2" Grid.Column="2" Margin="5" x:Name="ViewSSRemovals" Content="Toon" Click="ViewSSRemovals_Click"/>
+				<Button Grid.Row="2" Grid.Column="3" Margin="5" x:Name="DoSSRemovals" Content="Voer Uit" Click="DoSSRemovals_Click"/>
+
+				<Label Grid.Row="3" Grid.Column="0" Margin="5" VerticalAlignment="Center" Content="Toevoegen aan Directory"/>
+				<Label Grid.Row="3" Grid.Column="1" Margin="5" VerticalAlignment="Center" x:Name="ADAddCount" Content="0"/>
+				<Button Grid.Row="3" Grid.Column="2" Margin="5" x:Name="ViewADAdditions" Content="Toon" Click="ViewADAdditions_Click"/>
+				<Button Grid.Row="3" Grid.Column="3" Margin="5" x:Name="DoADAdditions" Content="Voer Uit" Click="DoADAdditions_Click"/>
+
+				<Label Grid.Row="4" Grid.Column="0" Margin="5" VerticalAlignment="Center" Content="Toevoegen aan Smartschool"/>
+				<Label Grid.Row="4" Grid.Column="1" Margin="5" VerticalAlignment="Center" x:Name="SSAddCount" Content="0"/>
+				<Button Grid.Row="4" Grid.Column="2" Margin="5" x:Name="ViewSSAdditions" Content="Toon" Click="ViewSSAdditions_Click"/>
+				<Button Grid.Row="4" Grid.Column="3" Margin="5" x:Name="DoSSAdditions" Content="Voer Uit" Click="DoSSAdditions_Click"/>
+
+				<Label Grid.Row="5" Grid.Column="0" Margin="5" VerticalAlignment="Center" Content="Wijzigen in Directory"/>
+				<Label Grid.Row="5" Grid.Column="1" Margin="5" VerticalAlignment="Center" x:Name="ADChangeCount" Content="0"/>
+				<Button Grid.Row="5" Grid.Column="2" Margin="5" x:Name="ViewADChanges" Content="Toon" Click="ViewADChanges_Click"/>
+				<Button Grid.Row="5" Grid.Column="3" Margin="5" x:Name="DoADChanges" Content="Voer Uit" Click="DoADChanges_Click"/>
+
+				<Label Grid.Row="6" Grid.Column="0" Margin="5" VerticalAlignment="Center" Content="Wijzigen Smartschool"/>
+				<Label Grid.Row="6" Grid.Column="1" Margin="5" VerticalAlignment="Center" x:Name="SSChangeCount" Content="0"/>
+				<Button Grid.Row="6" Grid.Column="2" Margin="5" x:Name="ViewSSChanges" Content="Toon" Click="ViewSSChanges_Click"/>
+				<Button Grid.Row="6" Grid.Column="3" Margin="5" x:Name="DoSSChanges" Content="Voer Uit" Click="DoSSChanges_Click"/>
+
+			</Grid>
+		</GroupBox>
+	</Grid>
+</UserControl>

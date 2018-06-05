@@ -34,6 +34,7 @@ namespace SchoolAdmin.UI.Config
       MainStaffGroup.Text = Properties.Settings.Default.SmartschoolStaff;
       StudentGroupsGrade.IsChecked = Properties.Settings.Default.SmartschoolUseGrade;
       StudentGroupsYear.IsChecked = Properties.Settings.Default.SmartschoolUseYear;
+			DiscardedSubgroups.Text = Properties.Settings.Default.SmartschoolDiscardableSubgroups;
       NameGrade1.Text = Properties.Settings.Default.SmartschoolGrade1;
       NameGrade2.Text = Properties.Settings.Default.SmartschoolGrade2;
       NameGrade3.Text = Properties.Settings.Default.SmartschoolGrade3;
@@ -53,6 +54,7 @@ namespace SchoolAdmin.UI.Config
       Properties.Settings.Default.SmartschoolTestAccount = TestAccount.Text.Trim();
       Properties.Settings.Default.SmartschoolStudents = MainStudentGroup.Text.Trim();
       Properties.Settings.Default.SmartschoolStaff = MainStaffGroup.Text.Trim();
+			Properties.Settings.Default.SmartschoolDiscardableSubgroups = DiscardedSubgroups.Text.Trim();
       Properties.Settings.Default.SmartschoolUseGrade = StudentGroupsGrade.IsChecked.Value;
       Properties.Settings.Default.SmartschoolUseYear = StudentGroupsYear.IsChecked.Value;
       Properties.Settings.Default.SmartschoolGrade1 = NameGrade1.Text.Trim();

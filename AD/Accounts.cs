@@ -23,6 +23,16 @@ namespace AD
         DirectorySearcher search = Connector.GetSearcher(Connector.StudentPath);
         search.Filter = "(ObjectClass=*)";
         search.SizeLimit = 20000;
+				search.PropertiesToLoad.Clear();
+				search.PropertiesToLoad.Add("sAMAccountName");
+				search.PropertiesToLoad.Add("givenName");
+				search.PropertiesToLoad.Add("sn");
+				search.PropertiesToLoad.Add("displayname");
+				search.PropertiesToLoad.Add("smamailalias");
+				search.PropertiesToLoad.Add("smaWisaID");
+				search.PropertiesToLoad.Add("smawisaname");
+				search.PropertiesToLoad.Add("smaClass");
+				search.PropertiesToLoad.Add("userAccountControl");
         SearchResultCollection results;
 
         try
@@ -35,6 +45,7 @@ namespace AD
           return false;
         }
 
+				int count = 0;
         foreach (SearchResult r in results)
         {
           DirectoryEntry entry = r.GetDirectoryEntry();
@@ -42,8 +53,10 @@ namespace AD
           // don't parse OU's
           if (entry.Name.StartsWith("OU")) continue;
           Students.Add(new Account(entry));
+					count++;
         }
 
+				Error.AddMessage("Added " + count.ToString() + " Student Accounts");
         return true;
       });
 
@@ -70,6 +83,7 @@ namespace AD
           return false;
         }
 
+				int count = 0;
         foreach (SearchResult r in results)
         {
           DirectoryEntry entry = r.GetDirectoryEntry();
@@ -77,8 +91,10 @@ namespace AD
           // don't parse OU's
           if (entry.Name.StartsWith("OU")) continue;
           Staff.Add(new Account(entry));
+					count++;
         }
 
+				Error.AddMessage("Added " + count.ToString() + " Staff Accounts");
         return true;
       });
 
@@ -125,7 +141,7 @@ namespace AD
       return true;
     }
 
-    public static async Task<Account> Create(string firstname, string lastname, AccountRole role, string classgroup = "")
+    public static async Task<Account> Create(string firstname, string lastname, string WisaID, AccountRole role, string classgroup = "")
     {
       return await Task.Run(() =>
       {
@@ -177,6 +193,9 @@ namespace AD
           // TODO: move mail alias to another property so we can get rid of the custom objectClass
           childEntry.Properties["objectClass"].Add("smaSchoolPerson");
           childEntry.Properties["smamailalias"].Value = alias;
+					childEntry.Properties["smaWisaID"].Value = WisaID;
+					childEntry.Properties["smawisaname"].Value = WisaID;
+					childEntry.Properties["smaClass"].Value = classgroup;
           childEntry.CommitChanges();
           childEntry.RefreshCache();
         }

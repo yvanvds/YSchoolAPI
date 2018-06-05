@@ -45,6 +45,8 @@ namespace AD
 
     public static bool Init(string domain, string accounts, string groups, string students, string staff, ILog log = null)
     {
+			Error.log = log;
+
       domainPath = domain;
       accountPath = accounts;
       groupPath = groups;

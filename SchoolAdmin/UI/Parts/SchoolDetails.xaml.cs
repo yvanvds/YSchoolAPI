@@ -20,11 +20,22 @@ namespace SchoolAdmin.UI.Parts
   /// </summary>
   public partial class SchoolDetails : UserControl
   {
-    public SchoolDetails()
+    public SchoolDetails(bool showDetails = true)
     {
       InitializeComponent();
 
       WorkDate.SelectedDate = DateTime.Now;
+
+			if(!showDetails)
+			{
+				StudentLabel.Visibility = Visibility.Collapsed;
+				StudentCount.Visibility = Visibility.Collapsed;
+				ShowStudents.Visibility = Visibility.Collapsed;
+
+				GroupLabel.Visibility = Visibility.Collapsed;
+				ClassGroupCount.Visibility = Visibility.Collapsed;
+				ShowClassGroups.Visibility = Visibility.Collapsed;
+			}
     }
 
     private Wisa.School school;

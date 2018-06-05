@@ -9,13 +9,14 @@ using YSchoolAPI;
 
 namespace Smartschool
 {
-  public static class Connector
-  {
-    internal static V3Service service;
-    internal static String password;
-    internal static ILog log;
-    
-    
+	public static class Connector
+	{
+		internal static V3Service service;
+		internal static String password;
+		internal static ILog log;
+
+		public static string[] DiscardSubgroups = new string[] { };
+
     public static void Init(string site, string password, ILog log = null)
     {
       service = new V3Service

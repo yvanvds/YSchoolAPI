@@ -10,7 +10,7 @@
     <Grid>
     <TabControl TabStripPlacement="Left">
       <TabItem Header="Algemeen">
-        
+                <local:MainConfig x:Name="Main"></local:MainConfig>
       </TabItem>
       <TabItem Header="Wisa">
         <local:WisaConfig x:Name="Wisa"></local:WisaConfig>

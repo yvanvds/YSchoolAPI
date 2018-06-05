@@ -34,5 +34,7 @@ namespace Smartschool
     public string Fax { get; set; }
     public string Mail { get; set; }
     public string MailAlias { get; set; }
+
+		public string Group { get; set; }
   }
 }

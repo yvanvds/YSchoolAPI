@@ -61,11 +61,11 @@ namespace Smartschool
     {
       if (Connector.log != null)
       {
-        Connector.log.Add("Smartschool Error: " + message, false);
+        Connector.log.Add("Smartschool Message: " + message, false);
       }
       else
       {
-        Debug.WriteLine("Smartschool Error: " + message);
+        Debug.WriteLine("Smartschool Message: " + message);
       }
     }
   }

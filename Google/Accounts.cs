@@ -42,6 +42,7 @@ namespace Google
       {
         try
         {
+					int count = 0;
           Users users = request.Execute();
 
           if(users.UsersValue.Count > 0)
@@ -50,6 +51,7 @@ namespace Google
             {
               Account acc = ToAccount(user);
               allUsers.Add(acc.UID, acc);
+							count++;
             }
           }
 
@@ -65,9 +67,11 @@ namespace Google
               {
                 Account acc = ToAccount(user);
                 allUsers.Add(acc.UID, acc);
+								count++;
               }
             }
           }
+					Error.AddMessage("Added " + count.ToString() + " Accounts");
           return true;
         }
         catch (Exception e)

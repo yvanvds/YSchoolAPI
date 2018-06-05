@@ -59,7 +59,7 @@ namespace UnitTests
     [TestMethod]
     public async Task CreateAccount()
     {
-      AD.Account account = await AD.Accounts.Create("firstname", "lastname", YSchoolAPI.AccountRole.Other);
+      AD.Account account = await AD.Accounts.Create("firstname", "lastname", "strangeWISAID", YSchoolAPI.AccountRole.Other);
       Assert.IsNotNull(account);
 
       Assert.IsTrue(AD.Accounts.Exists(account.UID));

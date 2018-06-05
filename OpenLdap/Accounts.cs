@@ -33,10 +33,14 @@ namespace OpenLdap
         return false;
       } else
       {
+				int count = 0;
         foreach(SearchResultEntry result in results.Entries)
         {
-          Staff.Add(new Account(result));       
+          Staff.Add(new Account(result));
+					count++;
         }
+
+				Error.AddMessage("Added " + count.ToString() + " Accounts");
         return true;
       }
     }

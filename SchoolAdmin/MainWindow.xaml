@@ -9,8 +9,8 @@
         Background="Gray"
         Title="School Admin" Height="450" Width="800" WindowState="Maximized">
   <DockPanel>
-    <ui:MainMenu DockPanel.Dock="Top"></ui:MainMenu>
-    <ui:Toolbar DockPanel.Dock="Bottom"></ui:Toolbar>
+		<ui:MainMenu DockPanel.Dock="Top"></ui:MainMenu>
+		<ui:Toolbar DockPanel.Dock="Bottom"></ui:Toolbar>
     <ui:TreeView DockPanel.Dock="Left" Width="200"></ui:TreeView>
     <ui:LogView x:Name="LogView" DockPanel.Dock="Right" Width="400"></ui:LogView>
     <ui:MainView></ui:MainView>

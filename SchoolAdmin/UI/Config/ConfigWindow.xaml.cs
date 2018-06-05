@@ -15,31 +15,33 @@ using System.Windows.Shapes;
 
 namespace SchoolAdmin.UI.Config
 {
-  /// <summary>
-  /// Interaction logic for ConfigWindow.xaml
-  /// </summary>
-  public partial class ConfigWindow : Window
-  {
-    public ConfigWindow()
-    {
-      InitializeComponent();
+	/// <summary>
+	/// Interaction logic for ConfigWindow.xaml
+	/// </summary>
+	public partial class ConfigWindow : Window
+	{
+		public ConfigWindow()
+		{
+			InitializeComponent();
 
-      Wisa.Load();
-      Smartschool.Load();
-      Google.Load();
-      OpenLdap.Load();
-      AD.Load();
-    }
+			Wisa.Load();
+			Smartschool.Load();
+			Google.Load();
+			OpenLdap.Load();
+			AD.Load();
+			Main.Load();
+		}
 
-    protected override void OnClosing(CancelEventArgs e)
-    {
-      Wisa.Save();
-      Smartschool.Save();
-      Google.Save();
-      OpenLdap.Save();
-      AD.Save();
-      Properties.Settings.Default.Save();
-      base.OnClosing(e);
-    }
-  }
+		protected override void OnClosing(CancelEventArgs e)
+		{
+			Wisa.Save();
+			Smartschool.Save();
+			Google.Save();
+			OpenLdap.Save();
+			AD.Save();
+			Main.Save();
+			Properties.Settings.Default.Save();
+			base.OnClosing(e);
+		}
+	}
 }

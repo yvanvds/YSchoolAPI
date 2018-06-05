@@ -10,6 +10,8 @@ namespace SchoolAdmin
   public static class Global
   {
     public static Logic.Log Log;
+		public static Models.Connector Connector = new Models.Connector();
+		public static Models.DataManager DataManager = new Models.DataManager();
 
     public static MainView View;
   }

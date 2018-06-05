@@ -63,8 +63,11 @@ namespace Smartschool
 
       if (children == null) return null;
 
-      foreach (var group in children)
+			if (Connector.DiscardSubgroups.Contains(Name)) return null;
+
+			foreach (var group in children)
       {
+				
         var result = group.Find(name);
         if (result != null) return result;
       }
@@ -76,7 +79,9 @@ namespace Smartschool
       get
       {
         int count = 0;
-        if (children != null) foreach (var group in children)
+				if (Connector.DiscardSubgroups.Contains(Name)) return count;
+
+			  if (children != null) foreach (var group in children)
           {
             count += group.CountClassGroupsOnly;
           }
@@ -94,7 +99,9 @@ namespace Smartschool
       get
       {
         int count = 0;
-        if (children != null) foreach (var group in children)
+				if (Connector.DiscardSubgroups.Contains(Name)) return count;
+
+			  if (children != null) foreach (var group in children)
           {
             count += group.Count;
           }
@@ -108,7 +115,9 @@ namespace Smartschool
     public int NumAccounts()
     {
       int count = 0;
-      if (children != null) {
+			if (Connector.DiscardSubgroups.Contains(Name)) return count;
+
+			if (children != null) {
         foreach (var group in children)
         {
           try
@@ -141,7 +150,7 @@ namespace Smartschool
     public void GetTreeAsList(List<IGroup> list)
     {
 
-      if (children != null)
+      if (children != null && !Connector.DiscardSubgroups.Contains(Name))
       {
         foreach (var child in children)
         {
@@ -179,8 +188,11 @@ namespace Smartschool
         foreach (var account in details)
         {
           Accounts.Add(new Account());
+					Accounts.Last().Group = Name;
           Smartschool.Accounts.LoadFromJSON(Accounts.Last(), account);
         }
+
+				Error.AddMessage("Added " + Accounts.Count.ToString() + " Accounts to " + Name);
       }
       catch (Exception e)
       {

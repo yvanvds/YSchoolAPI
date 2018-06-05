@@ -77,6 +77,23 @@ namespace UnitTests
     }
 
     [TestMethod]
+    public async Task LoadStaff()
+    {
+      Wisa.School school = new Wisa.School(
+       Properties.Settings.Default.WisaLoadStudentsFromSchool,
+       "TEST",
+       "Does not matter"
+      );
+
+      bool result = await Wisa.Staff.Add(school);
+      Assert.IsTrue(result);
+      Assert.IsTrue(Wisa.Staff.All.Count > 0);
+
+      Wisa.Staff.Clear();
+      Assert.IsTrue(Wisa.Staff.All.Count == 0);
+    }
+
+    [TestMethod]
     public async Task LoadClassGroups()
     {
       Wisa.School school = new Wisa.School(

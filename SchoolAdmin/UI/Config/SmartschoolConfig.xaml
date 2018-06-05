@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:SchoolAdmin.UI.Config"
              mc:Ignorable="d" 
              Background="White"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="500" d:DesignWidth="800">
     <Grid>
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="1*"/>
@@ -60,6 +60,14 @@
 
         </Grid>
       </GroupBox>
+
+			<GroupBox Header="Negeer Subgroepen">
+				<StackPanel Orientation="Vertical">
+					<Label Content="Comma Separated Values!" Margin="5"/>
+					<TextBox x:Name="DiscardedSubgroups" Margin="5"/>
+
+				</StackPanel>
+			</GroupBox>
     </StackPanel>
 
     <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Vertical">

@@ -106,7 +106,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\ClassGroup.cs" />
+    <Compile Include="Models\ClassGroupSync.cs" />
+    <Compile Include="Models\Connector.cs" />
     <Compile Include="Models\DataManager.cs" />
+    <Compile Include="Models\SchoolConfig.cs" />
+    <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\StudentSync.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -118,8 +124,14 @@
     <Compile Include="UI\Config\GoogleConfig.xaml.cs">
       <DependentUpon>GoogleConfig.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Config\MainConfig.xaml.cs">
+      <DependentUpon>MainConfig.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Config\OpenLdapConfig.xaml.cs">
       <DependentUpon>OpenLdapConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Dialogs\SelectWisaSchools.xaml.cs">
+      <DependentUpon>SelectWisaSchools.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Dialogs\ShowGoogleAccounts.xaml.cs">
       <DependentUpon>ShowGoogleAccounts.xaml</DependentUpon>
@@ -132,6 +144,12 @@
     </Compile>
     <Compile Include="UI\Dialogs\ShowSmartschoolStudents.xaml.cs">
       <DependentUpon>ShowSmartschoolStudents.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Dialogs\ShowStudentAccounts.xaml.cs">
+      <DependentUpon>ShowStudentAccounts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Dialogs\ShowStudentDetail.xaml.cs">
+      <DependentUpon>ShowStudentDetail.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Dialogs\ShowWisaClassGroups.xaml.cs">
       <DependentUpon>ShowWisaClassGroups.xaml</DependentUpon>
@@ -166,6 +184,9 @@
     <Compile Include="UI\Tabs\ADInfo.xaml.cs">
       <DependentUpon>ADInfo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Tabs\DataLoader.xaml.cs">
+      <DependentUpon>DataLoader.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Tabs\GoogleInfo.xaml.cs">
       <DependentUpon>GoogleInfo.xaml</DependentUpon>
     </Compile>
@@ -174,6 +195,9 @@
     </Compile>
     <Compile Include="UI\Tabs\SmartschoolInfo.xaml.cs">
       <DependentUpon>SmartschoolInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Tabs\SyncInfo.xaml.cs">
+      <DependentUpon>SyncInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Tabs\WisaInfo.xaml.cs">
       <DependentUpon>WisaInfo.xaml</DependentUpon>
@@ -195,7 +219,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Config\MainConfig.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Config\OpenLdapConfig.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Dialogs\SelectWisaSchools.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -212,6 +244,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Dialogs\ShowSmartschoolStudents.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Dialogs\ShowStudentAccounts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Dialogs\ShowStudentDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -267,6 +307,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Tabs\DataLoader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Tabs\GoogleInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -276,6 +320,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Tabs\SmartschoolInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Tabs\SyncInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -353,6 +401,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icons\waiting.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\check-circle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\minus-circle.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

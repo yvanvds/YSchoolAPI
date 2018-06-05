@@ -16,8 +16,8 @@
       <Grid.RowDefinitions>
         <RowDefinition Height="30"/>
         <RowDefinition Height="30"/>
-        <RowDefinition Height="40"/>
-        <RowDefinition Height="40"/>
+        <RowDefinition />
+        <RowDefinition />
       </Grid.RowDefinitions>
 
       <TextBlock x:Name="Name" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="5" Text="School Name" FontWeight="Bold"/>
@@ -25,11 +25,11 @@
       <TextBlock Grid.Row="1" Grid.Column="0" Margin="5" Text="Werkdatum:"/>
       <DatePicker x:Name="WorkDate" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"  Margin="5,0,5,0"/>
 
-      <TextBlock Grid.Row="2" Grid.Column="0" Margin="5" VerticalAlignment="Center" Text="Leerlingen:"/>
+      <TextBlock Grid.Row="2" Grid.Column="0" Margin="5" VerticalAlignment="Center" Text="Leerlingen:" x:Name="StudentLabel"/>
       <TextBlock Grid.Row="2" Grid.Column="1" Margin="5" VerticalAlignment="Center" x:Name="StudentCount" Text="0"/>
       <Button Grid.Row="2" Grid.Column="2" Margin="5" Padding="3" Content="Toon Leerlingen" x:Name="ShowStudents" Click="ShowStudents_Click"/>
 
-      <TextBlock Grid.Row="3" Grid.Column="0" Margin="5,0,5,5" VerticalAlignment="Center" Text="Klassen:"/>
+      <TextBlock Grid.Row="3" Grid.Column="0" Margin="5,0,5,5" VerticalAlignment="Center" Text="Klassen:" x:Name="GroupLabel"/>
       <TextBlock Grid.Row="3" Grid.Column="1" Margin="5,0,5,5" VerticalAlignment="Center" x:Name="ClassGroupCount" Text="0"/>
       <Button Grid.Row="3" Grid.Column="2" Margin="5,0,5,5" Padding="3" Content="Toon Klassen" x:Name="ShowClassGroups" Click="ShowClassGroups_Click"/>
     </Grid>
