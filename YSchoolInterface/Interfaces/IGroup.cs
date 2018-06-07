@@ -16,7 +16,7 @@ namespace YSchoolAPI
     bool Official { set; get; }
     string CoAccountLabel { set; get; }
     int AdminNumber { set; get; }
-    int InstituteNumber { set; get; }
+    string InstituteNumber { set; get; }
     List<string> Titulars { set; get; }
 
     IGroup Parent { set; get; }

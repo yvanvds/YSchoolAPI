@@ -43,8 +43,8 @@ namespace Smartschool
     int adminNumber = 0;
     public int AdminNumber { get => adminNumber; set => adminNumber = value; }
 
-    int instituteNumber = 0;
-    public int InstituteNumber { get => instituteNumber; set => instituteNumber = value; }
+    string instituteNumber = string.Empty;
+    public string InstituteNumber { get => instituteNumber; set => instituteNumber = value; }
 
     List<string> titulars;
     public List<string> Titulars { get => titulars; set => titulars = value; }

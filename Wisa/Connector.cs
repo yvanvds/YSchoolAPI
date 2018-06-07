@@ -12,6 +12,9 @@ namespace Wisa
   {
     private static WISA.TWISAAPICredentials credentials;
     private static WISA.WisaAPIServiceService service;
+
+		public static Dictionary<string, string> ReplaceInstNumber = new Dictionary<string, string>();
+
     internal static ILog Log;
 
     static public void Init(string url, int port, string accountname, string password, string database, ILog log = null)

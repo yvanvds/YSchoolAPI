@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="Account.cs" />
     <Compile Include="Accounts.cs" />
+    <Compile Include="ClassGroup.cs" />
+    <Compile Include="ClassGroups.cs" />
     <Compile Include="Connector.cs" />
     <Compile Include="Error.cs" />
     <Compile Include="Groups.cs" />

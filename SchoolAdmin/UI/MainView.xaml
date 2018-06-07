@@ -16,8 +16,11 @@
 
 		<TabControl x:Name="Tabs" Visibility="Visible">
 
-			<TabItem Header="Sync" x:Name="SyncTab">
-				<tabs:SyncInfo x:Name="SyncInfo"></tabs:SyncInfo>
+			<TabItem Header="Sync Leerlingen" x:Name="SyncStudentTab">
+				<tabs:SyncStudentInfo x:Name="SyncStudentInfo"></tabs:SyncStudentInfo>
+			</TabItem>
+			<TabItem Header="Sync Klassen" x:Name="SyncClassTab">
+				<tabs:SyncClassInfo x:Name="SyncClassInfo"></tabs:SyncClassInfo>
 			</TabItem>
 			<TabItem Header="Wisa" x:Name="WisaTab">
 				<tabs:WisaInfo x:Name="WisaInfo"></tabs:WisaInfo>

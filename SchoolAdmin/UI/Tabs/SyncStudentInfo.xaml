@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="SchoolAdmin.UI.Tabs.SyncInfo"
+﻿<UserControl x:Class="SchoolAdmin.UI.Tabs.SyncStudentInfo"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -72,7 +72,7 @@
 
 			<Grid>
 				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="100"/>
+					<ColumnDefinition Width="150"/>
 					<ColumnDefinition Width="*"/>
 					<ColumnDefinition Width="100"/>
 				</Grid.ColumnDefinitions>
@@ -82,7 +82,6 @@
 					<RowDefinition Height="40"/>
 				</Grid.RowDefinitions>
 
-				<Button Grid.Row="0" Grid.Column="0" x:Name="SyncClasses" Content="Vergelijk Klassen" Margin="5" Click="SyncClasses_Click"/>
 
 				<Button Grid.Row="1" Grid.Column="0" x:Name="SyncStudents" Content="Vergelijk Leerlingen" Margin="5" Click="SyncStudents_Click"/>
 				<Button Grid.Row="1" Grid.Column="2" x:Name="ShowAllAccounts" Visibility="Hidden" Content="Toon Accounts" Margin="5" Click="ShowAllAccounts_Click"/>

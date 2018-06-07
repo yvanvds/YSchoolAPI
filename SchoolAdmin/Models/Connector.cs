@@ -222,6 +222,19 @@ namespace SchoolAdmin.Models
 				}
 			}
 
+			if(Settings.Default.WisaReplace.Length > 0)
+			{
+				string[] lines = Settings.Default.WisaReplace.Split(',');
+				foreach(var line in lines)
+				{
+					string[] pair = line.Split('>');
+					if(pair.Count() == 2)
+					{
+						Wisa.Connector.ReplaceInstNumber.Add(pair[0].Trim(), pair[1].Trim());
+					}
+				}
+			}
+
 			if (!schoolFound)
 			{
 				Global.Log.Add("Geen actieve scholen gevonden");
@@ -234,6 +247,31 @@ namespace SchoolAdmin.Models
 		public void ConnecToSmartschool()
 		{
 			Smartschool.Connector.DiscardSubgroups = Properties.Settings.Default.SmartschoolDiscardableSubgroups.Split(',');
+			Smartschool.Connector.StaffPath = Settings.Default.SmartschoolStaff;
+			Smartschool.Connector.StudentPath = Settings.Default.SmartschoolStudents;
+
+			if (Properties.Settings.Default.SmartschoolUseGrade)
+			{
+				Smartschool.Connector.StudentGrade = new string[] {
+					Properties.Settings.Default.SmartschoolGrade1,
+					Properties.Settings.Default.SmartschoolGrade2,
+					Properties.Settings.Default.SmartschoolGrade3
+				};
+			}
+
+			if (Properties.Settings.Default.SmartschoolUseYear)
+			{
+				Smartschool.Connector.StudentYear = new string[] {
+					Properties.Settings.Default.SmartschoolYear1,
+					Properties.Settings.Default.SmartschoolYear2,
+					Properties.Settings.Default.SmartschoolYear3,
+					Properties.Settings.Default.SmartschoolYear4,
+					Properties.Settings.Default.SmartschoolYear5,
+					Properties.Settings.Default.SmartschoolYear6,
+					Properties.Settings.Default.SmartschoolYear7
+				};
+			}
+
 			Smartschool.Connector.Disconnect();
 			Smartschool.Connector.Init(
 				Properties.Settings.Default.SmartschoolURL,

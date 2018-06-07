@@ -10,11 +10,11 @@ namespace SchoolAdmin.Models
 	{
 		public Dictionary<string, Student> All = new Dictionary<string, Student>();
 		public List<Student> CreateInAD = new List<Student>();
-		public List<Student> CreateInSmartschool = new List<Student>();
+		public List<Student> CreateInSS = new List<Student>();
 		public List<Student> DeleteFromAD = new List<Student>();
-		public List<Student> DeleteFromSmartschool = new List<Student>();
+		public List<Student> DeleteFromSS = new List<Student>();
 		public List<Student> UpdateInAD = new List<Student>();
-		public List<Student> UpdateInSmartschool = new List<Student>();
+		public List<Student> UpdateInSS = new List<Student>();
 
 		private int NoWisaID = 0;
 
@@ -130,7 +130,7 @@ namespace SchoolAdmin.Models
 					if (student.WisaAccount != null && student.SmartschoolAccount == null)
 					{
 						student.DoSSCreate = true;
-						CreateInSmartschool.Add(student);
+						CreateInSS.Add(student);
 					}
 
 					if (student.WisaAccount == null)
@@ -144,7 +144,7 @@ namespace SchoolAdmin.Models
 						if (student.SmartschoolAccount != null)
 						{
 							student.DoSSDelete = true;
-							DeleteFromSmartschool.Add(student);
+							DeleteFromSS.Add(student);
 						}
 					}
 

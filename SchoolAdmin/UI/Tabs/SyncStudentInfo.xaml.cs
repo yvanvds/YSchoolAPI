@@ -20,14 +20,14 @@ namespace SchoolAdmin.UI.Tabs
 	/// <summary>
 	/// Interaction logic for SyncInfo.xaml
 	/// </summary>
-	public partial class SyncInfo : UserControl
+	public partial class SyncStudentInfo : UserControl
 	{
-		public SyncInfo()
+		private Models.StudentSync studentSync;
+
+		public SyncStudentInfo()
 		{
 			InitializeComponent();
 		}
-
-		private Models.StudentSync studentSync;
 
 		public void Reload()
 		{
@@ -83,11 +83,11 @@ namespace SchoolAdmin.UI.Tabs
 			ShowAllAccounts.Visibility = Visibility.Visible;
 
 			ADRemoveCount.Content = studentSync.DeleteFromAD.Count.ToString();
-			SSRemoveCount.Content = studentSync.DeleteFromSmartschool.Count.ToString();
+			SSRemoveCount.Content = studentSync.DeleteFromSS.Count.ToString();
 			ADAddCount.Content = studentSync.CreateInAD.Count.ToString();
-			SSAddCount.Content = studentSync.CreateInSmartschool.Count.ToString();
+			SSAddCount.Content = studentSync.CreateInSS.Count.ToString();
 			ADChangeCount.Content = studentSync.UpdateInAD.Count.ToString();
-			SSChangeCount.Content = studentSync.UpdateInSmartschool.Count.ToString();
+			SSChangeCount.Content = studentSync.UpdateInSS.Count.ToString();
 
 			
 		}
@@ -121,7 +121,7 @@ namespace SchoolAdmin.UI.Tabs
 		private void ViewSSRemovals_Click(object sender, RoutedEventArgs e)
 		{
 			if (studentSync == null) return;
-			var window = new ShowStudentAccounts(studentSync.DeleteFromSmartschool.ToList<Student>(), "DoSSDelete");
+			var window = new ShowStudentAccounts(studentSync.DeleteFromSS.ToList<Student>(), "DoSSDelete");
 			window.Title = "Leerlingen te verwijderen uit Smartschool";
 			window.ShowDialog();
 		}
@@ -147,7 +147,7 @@ namespace SchoolAdmin.UI.Tabs
 		private void ViewSSAdditions_Click(object sender, RoutedEventArgs e)
 		{
 			if (studentSync == null) return;
-			var window = new ShowStudentAccounts(studentSync.CreateInSmartschool.ToList<Student>(), "DoSSCreate");
+			var window = new ShowStudentAccounts(studentSync.CreateInSS.ToList<Student>(), "DoSSCreate");
 			window.Title = "Leerlingen toe te voegen aan Smartschool";
 			window.ShowDialog();
 		}
@@ -173,7 +173,7 @@ namespace SchoolAdmin.UI.Tabs
 		private void ViewSSChanges_Click(object sender, RoutedEventArgs e)
 		{
 			if (studentSync == null) return;
-			var window = new ShowStudentAccounts(studentSync.UpdateInSmartschool.ToList<Student>(), "DoSSUpdate");
+			var window = new ShowStudentAccounts(studentSync.UpdateInSS.ToList<Student>(), "DoSSUpdate");
 			window.Title = "Smartschool Wijzigingen";
 			window.ShowDialog();
 		}

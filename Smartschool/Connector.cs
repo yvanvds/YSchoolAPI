@@ -17,7 +17,13 @@ namespace Smartschool
 
 		public static string[] DiscardSubgroups = new string[] { };
 
-    public static void Init(string site, string password, ILog log = null)
+	  public static string StudentPath { get; set; }
+		public static string StaffPath { get; set; }
+
+		public static string[] StudentGrade = new string[] { };
+		public static string[] StudentYear = new string[] { };
+
+		public static void Init(string site, string password, ILog log = null)
     {
       service = new V3Service
       {

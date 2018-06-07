@@ -106,9 +106,7 @@ namespace Smartschool
               case "instituteNumber":
                 if (reader.Read())
                 {
-                  int var = 0;
-                  int.TryParse(reader.Value, out var);
-                  current.InstituteNumber = var;
+									current.InstituteNumber = reader.Value;
                   //Debug.WriteLine(current.InstituteNumber);
                 }
                 break;
@@ -137,6 +135,41 @@ namespace Smartschool
       if (root != null) Root.Sort();
     }
 
+		// get the logical parent for this group, even it does not exist yet
+		public static string GetLogicalParent(string classgroup)
+		{
+			string number = classgroup.Substring(0, 1);
+			int year = 0;
+			try
+			{
+				year = Convert.ToInt32(number);
+			} catch (Exception e)
+			{
+				Error.AddError(e.Message);
+				return "";
+			}
+
+			if (year < 1 || year > 7) return "";
+			if (Connector.StudentYear.Count() == 7)
+			{
+				return Connector.StudentYear[year - 1];
+			} else if (Connector.StudentGrade.Count() == 3)
+			{
+				switch(year)
+				{
+					case 1:
+					case 2:
+						return Connector.StudentGrade[0];
+					case 3:
+					case 4:
+						return Connector.StudentGrade[1];
+					default:
+						return Connector.StudentGrade[2];
+				}
+			}
+			return Connector.StudentPath;
+		}
+
     public static async Task<bool> Save(IGroup group)
     {
       int result = 0;
@@ -146,11 +179,11 @@ namespace Smartschool
         var r = await Task.Run(() => Connector.service.saveClass(
           Connector.password,
           group.Name,
-          group.Description,
+          group.Description, // TODO: add warning (empty description is not accepted by smartschool)
           group.Code,
           group.Parent.Code,
           group.Untis,
-          group.InstituteNumber.ToString(),
+          group.InstituteNumber,
           group.AdminNumber.ToString(),
           ""
         ));

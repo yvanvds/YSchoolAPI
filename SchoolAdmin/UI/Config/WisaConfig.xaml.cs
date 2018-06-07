@@ -34,7 +34,7 @@ namespace SchoolAdmin.UI.Config
       Database.Text = Properties.Settings.Default.WisaDatabase;
       Username.Text = Properties.Settings.Default.WisaAccount;
       Password.Text = Properties.Settings.Default.WisaPassword;
-
+			Replace.Text = Properties.Settings.Default.WisaReplace;
       RedrawSchoolsList();
     }
 
@@ -46,7 +46,8 @@ namespace SchoolAdmin.UI.Config
       Properties.Settings.Default.WisaAccount = Username.Text.Trim();
       Properties.Settings.Default.WisaPassword = Password.Text.Trim();
       Properties.Settings.Default.WisaActiveSchools = Wisa.Schools.ActiveSchoolsToString();
-    }
+			Properties.Settings.Default.WisaReplace = Replace.Text.Trim();
+		}
 
     private async void ButtonConnectionTest_Click(object sender, RoutedEventArgs e)
     {

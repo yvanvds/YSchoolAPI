@@ -64,7 +64,8 @@ namespace SchoolAdmin.UI
 			ADTab.Visibility = Visibility.Collapsed;
 			SmartschoolTab.Visibility = Visibility.Collapsed;
 			GoogleTab.Visibility = Visibility.Collapsed;
-			SyncTab.Visibility = Visibility.Collapsed;
+			SyncStudentTab.Visibility = Visibility.Collapsed;
+			SyncClassTab.Visibility = Visibility.Collapsed;
 			OpenLdapTab.Visibility = Visibility.Collapsed;
 			Tabs.Visibility = Visibility.Hidden;
 		}
@@ -95,8 +96,10 @@ namespace SchoolAdmin.UI
 					OpenLdapTab.Visibility = Visibility.Visible;
 					break;
 				case TabView.SYNCVIEW:
-					SyncTab.Visibility = Visibility.Visible;
-					SyncInfo.Reload();
+					SyncStudentTab.Visibility = Visibility.Visible;
+					SyncStudentInfo.Reload();
+					SyncClassTab.Visibility = Visibility.Visible;
+					SyncClassInfo.Reload();
 					break;
 			}
 			Tabs.Visibility = Visibility.Visible;

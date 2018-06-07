@@ -21,6 +21,11 @@ namespace Wisa
       adminCode = values[2];
       schoolCode = values[3];
       SchoolID = schoolID;
+
+			if(Connector.ReplaceInstNumber.ContainsKey(schoolCode))
+			{
+				schoolCode = Connector.ReplaceInstNumber[schoolCode];
+			}
     }
 
     public string Name { get => name; }

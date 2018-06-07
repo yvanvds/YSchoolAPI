@@ -58,6 +58,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
       <Private>True</Private>
@@ -133,6 +134,9 @@
     <Compile Include="UI\Dialogs\SelectWisaSchools.xaml.cs">
       <DependentUpon>SelectWisaSchools.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Dialogs\ShowClassGroups.xaml.cs">
+      <DependentUpon>ShowClassGroups.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Dialogs\ShowGoogleAccounts.xaml.cs">
       <DependentUpon>ShowGoogleAccounts.xaml</DependentUpon>
     </Compile>
@@ -196,8 +200,11 @@
     <Compile Include="UI\Tabs\SmartschoolInfo.xaml.cs">
       <DependentUpon>SmartschoolInfo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Tabs\SyncInfo.xaml.cs">
-      <DependentUpon>SyncInfo.xaml</DependentUpon>
+    <Compile Include="UI\Tabs\SyncClassInfo.xaml.cs">
+      <DependentUpon>SyncClassInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Tabs\SyncStudentInfo.xaml.cs">
+      <DependentUpon>SyncStudentInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Tabs\WisaInfo.xaml.cs">
       <DependentUpon>WisaInfo.xaml</DependentUpon>
@@ -228,6 +235,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Dialogs\SelectWisaSchools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Dialogs\ShowClassGroups.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -323,7 +334,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Tabs\SyncInfo.xaml">
+    <Page Include="UI\Tabs\SyncClassInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Tabs\SyncStudentInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -60,6 +60,9 @@
 
         </StackPanel>
       </GroupBox>
+			<GroupBox Header="Vervang Instellingsnummer" Margin="10">
+				<TextBox x:Name="Replace" Margin="5"/>
+			</GroupBox>
     </StackPanel>
 
     <StackPanel x:Name="SchoolsListContainer" Visibility="Collapsed" Grid.Column="1" Grid.Row="0" Orientation="Vertical">

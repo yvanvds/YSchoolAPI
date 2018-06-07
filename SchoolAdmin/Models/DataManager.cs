@@ -26,6 +26,9 @@ namespace SchoolAdmin.Models
 		private bool directoryStaffLoaded = false;
 		public bool DirectoryStaffLoaded { get => directoryStaffLoaded; }
 
+		private bool directoryGroupsLoaded = false;
+		public bool DirectoryGroupsLoaded { get => directoryGroupsLoaded; }
+
 		public bool smartschoolGroupsLoaded = false;
 		public bool SmartschoolGroupsLoaded { get => smartschoolGroupsLoaded; }
 
@@ -125,11 +128,21 @@ namespace SchoolAdmin.Models
 			directoryStaffLoaded = true;
 		}
 
+		public async Task LoadDirectoryGroups(bool force = false)
+		{
+			if (!force && directoryGroupsLoaded) return;
+			AD.Groups.ReloadGroups();
+            await AD.ClassGroups.Load();
+
+			directoryGroupsLoaded = true;
+		}
+
 		public async Task LoadDirectory(bool force = false)
 		{
 			List<Task> TaskList = new List<Task>();
 			TaskList.Add(LoadDirectoryStaff(force));
 			TaskList.Add(LoadDirectoryStudents(force));
+            TaskList.Add(LoadDirectoryGroups(force));
 
 			await Task.Run(() =>
 			Task.WaitAll(TaskList.ToArray()));
